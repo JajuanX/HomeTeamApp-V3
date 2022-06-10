@@ -1,0 +1,63 @@
+.loginPage {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	height: 100vh;
+
+	.container {
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		height: 580px;
+
+		.photo {
+			height: 300px;
+			width: 300px;
+			margin: auto;
+		}
+	
+		.loginWithContainer {
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			justify-items: center;
+			justify-content: space-around;
+			height: 100px;
+	
+			button {
+				display: grid;
+				grid-template-columns: .25fr 3fr;
+				place-items: center;
+				border-radius: 500px;
+				height: 50px;
+				width: 300px;
+				padding: 10px 30px;
+				font-weight: bold;
+				font-size: 25px;
+				margin-top: 30px;
+				
+				.photo {
+					height: 25px;
+				}
+			}
+			
+			#facebook {
+				background-color: #3578E5;
+				color: white;
+
+				.photo {
+					height: 35px;
+					margin-left: -5px;
+				}
+			}
+
+			#google {
+				background-color: #cacaca;
+				color: black;
+			}
+		}
+	}
+
+
+}

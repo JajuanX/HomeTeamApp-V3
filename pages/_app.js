@@ -1,7 +1,36 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import Script from 'next/script';
+import UserContext from '../lib/context';
+import useUserData from '../lib/userHooks';
+import TopBar from '../components/navigation/TopBar';
+import BottomBar from '../components/navigation/BottomBar';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+
+	const userData = useUserData()
+	return (
+		<>
+			<Script strategy='lazyOnload' src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
+
+			<Script id='Google Analytics' strategy='lazyOnload'>
+				{` window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					
+					gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')`}
+			</Script>
+			<Script
+				strategy='lazyOnload'
+				src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY}&libraries=places`}
+			/>
+
+			<UserContext.Provider value={userData}>
+				<TopBar />
+				<Component {...pageProps} />
+				<BottomBar />
+			</UserContext.Provider>
+		</>
+	)
 }
 
 export default MyApp

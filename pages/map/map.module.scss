@@ -1,0 +1,41 @@
+.businessMap {
+	.helpBlock {
+		display: grid;
+		place-items: center;
+		height: 200px;
+
+		p {
+			margin: auto;
+			font-size: 1.1rem;
+		}
+	}
+
+	.categoryContainer {
+		display: flex;
+		flex-direction: row;
+		width: 100vw;
+		overflow-x: auto;
+		margin: 24px 0;
+		.category {
+			color: white;
+			background-color: black;
+			margin: 0 5px;
+			padding: 0 20px;
+			border-radius: 5px;
+			width: max-content;
+		}
+
+	}
+
+
+	.pin {
+		display: flex;
+		flex-direction: column;
+		justify-items: center;
+		width: max-content;
+	}
+
+	.waypoint {
+		height: 200px;
+	}
+}
