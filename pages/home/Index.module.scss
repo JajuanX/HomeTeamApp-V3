@@ -1,0 +1,11 @@
+.pageContainer {
+	margin: 0;
+	padding: 60px 10px;
+
+	.waypoint {
+		height: 100px;
+		width: 100%;
+		display: grid;
+		place-items: center;
+	}
+}

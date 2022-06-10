@@ -1,0 +1,37 @@
+.businessRow {
+	display: flex;
+	flex-direction: row;
+	border: 1px solid black;
+	border-radius: 10px;
+	width: 90%;
+	margin: 10px auto;
+	height: 100px;
+	cursor: pointer;
+
+	.businessDetails {
+		display: flex;
+		flex-direction: column;
+		padding: 10px 10px;
+		height: fit-content;
+		margin: auto 0;
+		vertical-align: middle;
+		p {
+			color: gray;
+			font-weight: 300;
+			font-size: .85rem;
+		}
+		span {
+			color: red;
+			font-weight: 300;
+			font-size: .85rem;
+		}
+
+	}
+
+	.businessPhoto {
+		display: grid;
+		place-items: center;
+		height: 100px;
+		width: 100px;
+	}
+}

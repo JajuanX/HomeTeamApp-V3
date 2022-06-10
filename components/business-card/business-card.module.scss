@@ -1,0 +1,14 @@
+.businessTileDisplay {
+	min-height: 125px;
+
+	.infoContainer {
+		.name {
+			font-size: 1rem;
+		}
+
+		.category {
+			font-size: .75rem;
+			line-height: 12px
+		}
+	}
+}

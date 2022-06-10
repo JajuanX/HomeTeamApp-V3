@@ -1,0 +1,137 @@
+.createBusiness {
+	padding: 70px 20px;
+
+	.inputContainer {
+		margin-bottom: 10px;
+	}
+
+	.mainTitle {
+		text-align: center;
+		font-size: 1.5rem;
+		margin-bottom: 15px;
+	}
+
+	.uploadContainer {
+		display: flex;
+		width: 90vw;
+
+		.uploaderContainer {
+			display: grid;
+			place-items: center;
+			flex-grow: 1;
+			margin: 15px 0;
+			.uploadedPhotoContainer {
+				height: 80px;
+				width: 80px;
+				position: relative;
+
+				label {
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	.operationHoursContainer {
+		border: 1px solid black;
+		padding: 10px;
+		border-radius: 10px;
+		margin-bottom: 10px;
+
+		.days {
+			padding: 8px 10px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+	
+			.day {
+				margin-right: 10px;
+				margin-bottom: 5px;
+				font-size: .85rem;
+				display: grid;
+				place-items: center;
+				width: 40px;
+			}	
+		}
+
+		.openTwentyFourHours {
+			margin: 15px auto 5px;
+			font-size: .85rem;
+			display: grid;
+			place-items: center;
+			width: 40px;
+		}	
+
+		.timesContainer {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			.timeContainer {
+				display: flex;
+				flex-direction: column;
+				input {
+					height: 30px;
+					font-size: .85rem;
+				}
+				label {
+					font-size: .85rem;
+				}
+			}
+		}
+	}
+
+	.placeholder {
+		display: grid;
+		place-items: center;
+		height: 100%;
+		width: 100%;
+		border: 1px dashed black;
+	}
+	
+	.photoupload {
+		display: none;
+	}
+
+	.suggestionsContainer {
+		position: relative;
+		z-index: 999;
+		background-color: white;
+		border: lightgray 1px solid;
+	
+		button:hover {
+			background-color: lightgray;
+			margin: auto 0;
+		}
+	
+		button {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			padding: 10px;
+
+			.suggestion {
+				display: flex;
+				flex-direction: row;
+
+				.mainText {
+					font-size: .75rem;
+					font-weight: 700;
+					margin-right: 5px;
+				}
+
+				.secondaryText {
+					font-size: .70rem;
+					font-weight: 200;
+				}
+			}
+		}
+	}
+
+	.button {
+		border: solid 1px black;
+		padding: 5px 10px;
+		border-radius: 5px;
+		width: 100%;
+	}
+
+}
