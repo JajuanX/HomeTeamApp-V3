@@ -35,7 +35,8 @@ function BusinessRow({business}) {
 					<Image
 						width={business.cover_photo.width}
 						height={business.cover_photo.height}
-						src={business.cover_photo.url} />
+						src={business.cover_photo.url} 
+						objectFit='contain'/>
 				</div>
 				<div className={styles.businessDetails}>
 					<h1>{business.name}</h1>

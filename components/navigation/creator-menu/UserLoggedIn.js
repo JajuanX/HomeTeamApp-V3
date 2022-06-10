@@ -10,12 +10,13 @@ import UserContext from '../../../lib/context';
 
 function UserLoggedIn() {
 	const { user } = useContext(UserContext);
+	console.log(user);
 
 	return (
 		<div className={styles.creatorMenuLogged}>
 			<div className={styles.userLoggedIn}>
 				<div className={styles.navigationBlock}>
-					{user && user.userBusinesses.length > 0 ? 
+					{user && user.userBusinesses?.length > 0 && 
 						<Link href={`/business/edit/${user.userBusinesses[0]}`} passHref>
 							<div className={styles.linkContainer}>
 								<div className={styles.imageContainer}>
@@ -23,7 +24,9 @@ function UserLoggedIn() {
 								</div>
 								<span>Edit Business</span>
 							</div>
-						</Link> : 
+						</Link> 
+					}
+					{user && user?.userBusinesses?.length === 0 &&
 						<Link href='/business/create'>
 							<div className={styles.linkContainer}>
 								<div className={styles.imageContainer}>
@@ -31,7 +34,10 @@ function UserLoggedIn() {
 								</div>
 								<span>Create Business</span>
 							</div>
-						</Link>
+						</Link> 
+					}
+					{!user &&
+						<Link href="/login">Login to create business</Link>
 					}
 				</div>
 				<Link href='/user' className={styles.navigationBlock}>
