@@ -1,13 +1,11 @@
 .businessMap {
-	.helpBlock {
-		display: grid;
-		place-items: center;
-		height: 200px;
+	padding-top: 60px;
+	min-height: 100vh;
+	position: fixed;
 
-		p {
-			margin: auto;
-			font-size: 1.1rem;
-		}
+	.businessContainer {
+		max-height: 260px;
+		overflow-y: auto;
 	}
 
 	.categoryContainer {
@@ -27,15 +25,10 @@
 
 	}
 
-
 	.pin {
 		display: flex;
 		flex-direction: column;
 		justify-items: center;
 		width: max-content;
-	}
-
-	.waypoint {
-		height: 200px;
 	}
 }

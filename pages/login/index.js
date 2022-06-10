@@ -23,7 +23,6 @@ export default function Login() {
 		}
 		if (user) {
 			router.push('/')
-			console.log(user, 'user logged in');
 		}
 	}, [user, router]);
 	
@@ -83,7 +82,7 @@ export default function Login() {
 				</div>
 				<div className="flex flex-col space-y-4 items-center">
 					<ButtonPictureWithText
-						text="CONTINUE WITH FACEBOOK"
+						text="CONTINUE WITH GOOGLE"
 						image={GoogleLogo}
 						width={20}
 						height={20}

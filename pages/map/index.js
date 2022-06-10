@@ -6,15 +6,16 @@ import styles from './map.module.scss';
 import BusinessIcon from '../../components/Business-Icon';
 import BusinessRow from '../../components/business-row/BusinessRow';
 import useFetchAllBusinesses from '../../lib/useFetchAllBusinesses';
+import { capitalizeFirstLetter } from '../../utils/utilities';
 
 
-function LocationPin({ business, icon, showBusiness}) {
+function LocationPin({ business, showBusiness}) {
 	const pinnedBusiness = business;
 	return (
 		<button type='button' className={styles.pin} onClick={() => showBusiness(pinnedBusiness)}>
 			<div>
 				<BusinessIcon 
-					icon={icon}
+					icon={capitalizeFirstLetter(business?.category)}
 					size="40px"
 				/>
 			</div>
@@ -123,7 +124,7 @@ export default function BusinessMap() {
 					))
 				}
 			</div>
-			<div>
+			<div className={styles.businessContainer}>
 				{ category !== 'all' && categoryBusinesses?.map( eachBusiness => (
 					<BusinessRow
 						key={eachBusiness?.id}
@@ -138,12 +139,11 @@ export default function BusinessMap() {
 						/>
 					))
 				}
-				{ category !== 'all' && categoryBusinesses?.length === 0 && categoryBusinesses?.map( eachBusiness => (
-					<BusinessRow
-						key={eachBusiness?.id}
-						business={eachBusiness}
-					/>
-				))}
+				{ category !== 'all' && categoryBusinesses?.length === 0 && 
+					<div className='text-center'>
+						No businesses found.
+					</div>
+				}
 
 			</div>
 		</div>
