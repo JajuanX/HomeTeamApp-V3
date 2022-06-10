@@ -31,7 +31,7 @@ function EditBusiness() {
 		const errMsg = 'Fail to retrieve business'
 
 		axios
-			.get(`http://localhost:3000/api/business/${id}`)
+			.get(`/api/business/${id}`)
 			.then(response => {
 				_deferred.resolve(response)
 			}).catch( error => {
