@@ -21,8 +21,8 @@
 		gap: 20px;
 		
 		.navigationBlock {
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			place-items: center;
 			justify-items: center;
 			align-items: center;
 		}

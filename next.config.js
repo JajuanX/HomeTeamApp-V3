@@ -7,7 +7,7 @@ module.exports = {
 		includePaths: [path.join(__dirname, 'styles')],
 	},
 	images: {
-		domains: ['firebasestorage.googleapis.com', 'lh3.googleusercontent.com'],
+		domains: ['firebasestorage.googleapis.com', 'lh3.googleusercontent.com', 'graph.facebook.com'],
 	},
 	async redirects() {
 		return [
