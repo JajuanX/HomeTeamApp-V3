@@ -11,7 +11,7 @@ function TopBar() {
 	return (
 		<div className="fixed bg-white z-50 flex w-full justify-between items-center pl-2 pr-2">
 			<div style={{width: '180px', height: '60px', position: 'relative'}}>
-				<Image priority="true" as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
+				<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
 			</div>
 			{	user && user.photoURL ?
 				<Link href="/user">

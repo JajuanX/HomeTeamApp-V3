@@ -61,6 +61,7 @@ function Home() {
 						{
 							businesses?.map((business) => (
 								<BusinessTileDisplay
+									key={business.id}
 									id={business.id}
 									business={business}
 								/>

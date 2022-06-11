@@ -457,9 +457,7 @@ function CreateBusiness() {
 							<div className={styles.uploadedPhotoContainer}>
 								{input.featurePhoto1?.url ? (
 									<div className={styles.photoContainer}>
-										<button type='button' onClick={(e) => handle_inputChange(e)}>
-											X
-										</button>
+
 										<Image
 											layout="fill"
 											objectFit="contain"
