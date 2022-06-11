@@ -6,7 +6,6 @@ import styles from './map.module.scss';
 import BusinessIcon from '../../components/Business-Icon';
 import BusinessRow from '../../components/business-row/BusinessRow';
 import useFetchAllBusinesses from '../../lib/useFetchAllBusinesses';
-import { capitalizeFirstLetter } from '../../utils/utilities';
 
 
 function LocationPin({ business, showBusiness}) {
@@ -15,7 +14,7 @@ function LocationPin({ business, showBusiness}) {
 		<button type='button' className={styles.pin} onClick={() => showBusiness(pinnedBusiness)}>
 			<div>
 				<BusinessIcon 
-					icon={capitalizeFirstLetter(business?.category)}
+					icon={business?.category}
 					size="40px"
 				/>
 			</div>

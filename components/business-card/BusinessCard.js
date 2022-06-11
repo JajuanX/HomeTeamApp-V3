@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './business-card.module.scss';
+import { capitalizeFirstLetter } from '../../utils/utilities';
 
 function BusinessTileDisplay({business}) {
 	return (
@@ -21,7 +22,7 @@ function BusinessTileDisplay({business}) {
 						{business.name}
 					</div>
 					<div className={`${styles.category} text-stone-500`}>
-						{business.category}
+						{capitalizeFirstLetter(business.category)}
 					</div>
 				</div>
 			</div>
