@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import Head from 'next/head';
 import { Carousel } from 'react-responsive-carousel';
-import { fetcher } from '../../utils/utilities';
+import { capitalizeFirstLetter, fetcher } from '../../utils/utilities';
 import Icon from '../../components/Business-Icon';
 import styles from './Business.module.scss';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -46,7 +46,7 @@ function Business() {
 			<div className={styles.business}>
 				<div className={styles.infoContainer}>
 					<h1>{business?.name}</h1>
-					<span>{business?.category}</span>
+					<span>{business && capitalizeFirstLetter(business.category)}</span>
 					<p className={styles.description}>{business?.description}</p>
 				</div>
 

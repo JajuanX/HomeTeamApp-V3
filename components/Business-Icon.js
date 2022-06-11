@@ -30,26 +30,26 @@ import Phone from '../public/assets/phone-call.png';
 
 function Icon({icon, size}) {
 	switch (icon) {
-	case 'Restaurants' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Restaurant" height={size} width={size} src={Restaurant}/></div>
-	case 'Beauty' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt='Beauty' height={size} width={size} src={Beauty}/></div>
-	case 'Church' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt='Church' height={size} width={size} src={Church}/></div>
-	case 'Teaching' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Teaching" height={size} width={size} src={Teaching}/></div>
-	case 'Event Planning' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Event Planning" height={size} width={size} src={EventPlanner}/></div>
-	case 'Financial' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Financial" height={size} width={size} src={Finance}/></div>
-	case 'Fitness' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Fitness" height={size} width={size} src={Fitness}/></div>
-	case 'Graphic Design' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Graphic Design" height={size} width={size} src={GraphicDesign}/></div>
-	case 'Web Services' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Web Services" height="24px" width="24px" src={Web}/></div>
-	case 'Videography' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Videography" height={size} width={size} src={Videography}/></div>
-	case 'Photography' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Photography" height={size} width={size} src={Photography}/></div>
-	case 'Clothing' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Clothing" height={size} width={size} src={Clothing}/></div>
-	case 'Printing Services' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Printing Services" height={size} width={size} src={PrintServices}/></div>
-	case 'Car Wash' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Car Wash" height={size} width={size} src={CarWash}/></div>
-	case 'Real Estate' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Real Estate" height={size} width={size} src={RealEstate}/></div>
-	case 'Coaching' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Coaching" height={size} width={size} src={Coaching}/></div>
-	case 'Tattoo Artist' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Tattoo Artist" height={size} width={size} src={TattooArtist}/></div>
-	case 'Art' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Art" height={size} width={size} src={Artist}/></div>
-	case 'Barbershop' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Barbershop" height={size} width={size} src={BarberShop}/></div>
-	case 'Mobile Repair' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Mobile Repair" height={size} width={size} src={MobileRepair}/></div>
+	case 'restaurants' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Restaurant" height={size} width={size} src={Restaurant}/></div>
+	case 'beauty' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt='Beauty' height={size} width={size} src={Beauty}/></div>
+	case 'church' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt='Church' height={size} width={size} src={Church}/></div>
+	case 'teaching' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Teaching" height={size} width={size} src={Teaching}/></div>
+	case 'event planning' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Event Planning" height={size} width={size} src={EventPlanner}/></div>
+	case 'financial' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Financial" height={size} width={size} src={Finance}/></div>
+	case 'fitness' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Fitness" height={size} width={size} src={Fitness}/></div>
+	case 'graphic design' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Graphic Design" height={size} width={size} src={GraphicDesign}/></div>
+	case 'web services' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Web Services" height="24px" width="24px" src={Web}/></div>
+	case 'videography' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Videography" height={size} width={size} src={Videography}/></div>
+	case 'photography' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Photography" height={size} width={size} src={Photography}/></div>
+	case 'clothing' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Clothing" height={size} width={size} src={Clothing}/></div>
+	case 'printing services' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Printing Services" height={size} width={size} src={PrintServices}/></div>
+	case 'car wash' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Car Wash" height={size} width={size} src={CarWash}/></div>
+	case 'real estate' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Real Estate" height={size} width={size} src={RealEstate}/></div>
+	case 'coaching' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Coaching" height={size} width={size} src={Coaching}/></div>
+	case 'tattoo artist' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Tattoo Artist" height={size} width={size} src={TattooArtist}/></div>
+	case 'art' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Art" height={size} width={size} src={Artist}/></div>
+	case 'barbershop' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Barbershop" height={size} width={size} src={BarberShop}/></div>
+	case 'mobile repair' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Mobile Repair" height={size} width={size} src={MobileRepair}/></div>
 	case 'website' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Website" height={size} width={size} src={Web}/></div>
 	case 'instagram' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Instagram" height={size} width={size} src={Instagram}/></div>
 	case 'facebook' : return <div style={{height: `${size}px`, width: `${size}px`}}><Image alt="Facebook" height={size} width={size} src={Facebook}/></div>
