@@ -4,10 +4,13 @@ import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import BusinessTileDisplay from '../../components/business-card/BusinessCard';
 import styles from './Index.module.scss';
+import IndexLayout from '../../layouts/IndexLayout';
+import ListMapLayout from '../../layouts/ListMapLayout';
 
 function Home() {
 	const [businesses, setBusinesses] = useState([]);
 	const [lastBusiness, setLastBusiness] = useState([]);
+
 
 	useEffect(() => {
 		fetch(`api/businesses/8`, {
@@ -21,7 +24,7 @@ function Home() {
 				console.log(err);
 			})
 	}, [])
-	
+
 	const nextPage = async () => {
 		if(businesses.length === 0) return;
 		const last = businesses[businesses.length - 1]
@@ -47,38 +50,42 @@ function Home() {
 	}
 
 	return (
-		<div className={styles.pageContainer} data-testid='home-page'>
-			<div className={styles.businessesContainer}>
-				{ businesses && 
-				<Box>
-					<Masonry
-						columns={2}
-						spacing={4}
-						defaultHeight={450}
-						defaultColumns={2}
-						defaultSpacing={4}
-					>
-						{
-							businesses?.map((business) => (
-								<BusinessTileDisplay
-									key={business.id}
-									id={business.id}
-									business={business}
-								/>
-							))
-						}
-					</Masonry>
-				</Box>}
-			</div>
+		<ListMapLayout>
+			<div className={styles.homeContainer} data-testid='home-page'>
+				<div className={styles.businessesContainer}>
+					{ businesses && 
+					<Box>
+						<Masonry
+							columns={2}
+							spacing={4}
+							defaultHeight={450}
+							defaultColumns={2}
+							defaultSpacing={4}
+						>
+							{
+								businesses?.map((business) => (
+									<BusinessTileDisplay
+										key={business.id}
+										id={business.id}
+										business={business}
+									/>
+								))
+							}
+						</Masonry>
+					</Box>}
+				</div>
 
-			<div className="waypoint">
-				<Waypoint
-					onEnter={nextPage}
-				/>
+				<div className="waypoint">
+					<Waypoint
+						onEnter={nextPage}
+					/>
+				</div>
 			</div>
-		</div>
+		</ListMapLayout>
 	)
 }
+
+Home.PageLayout = IndexLayout;
 
 export default Home
 

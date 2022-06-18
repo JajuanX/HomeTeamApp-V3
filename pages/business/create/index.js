@@ -5,9 +5,11 @@ import Script from 'next/script';
 import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import Image from 'next/image';
-import useCreateBusinessForm from '../../lib/useCreateBusinessForm';
-import UserContext from '../../lib/context';
+import { useRouter } from 'next/router';
+import useCreateBusinessForm from '../../../lib/useCreateBusinessForm';
+import UserContext from '../../../lib/context';
 import styles from './Create.module.scss';
+import IndexLayout from '../../../layouts/IndexLayout';
 
 const DAYS_OF_WEEK = [
 	{
@@ -68,6 +70,8 @@ function CreateBusiness() {
 		handle_uploadChange,
 	} = useCreateBusinessForm();
 	const isFirstRender = useRef(true);
+	const router = useRouter();
+
 
 	useEffect(() => {
 		if (isFirstRender.current) {
@@ -75,8 +79,10 @@ function CreateBusiness() {
 			return;
 		}
 		if (!user) {
-			// navigate('/');
+			router.push(`/business/center`)
 		}
+
+		if (user.userBusinesses.length > 0) router.push(`/business/edit/${user.userBusinesses[0]}`)
 	}, [user]);
 
 	const handleInput = (e) => {
@@ -648,5 +654,6 @@ function CreateBusiness() {
 		</>
 	);
 }
+CreateBusiness.PageLayout = IndexLayout;
 
 export default CreateBusiness;

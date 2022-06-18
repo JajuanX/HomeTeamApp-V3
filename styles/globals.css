@@ -15,11 +15,11 @@ html, body {
 
 @layer components {
 	.input-single {
-		@apply placeholder:text-sm placeholder:text-stone-500 block bg-white w-full border border-black rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-orange sm:text-sm text-base mb-6
+		@apply placeholder:text-sm placeholder:text-stone-500 block bg-white w-full border border-black rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-orange sm:text-sm text-base
 	}
 
 	.input-container {
-		@apply flex flex-col h-20 mb-1
+		@apply flex flex-col h-20
 	}
 
 	.upload-container {
@@ -37,5 +37,9 @@ html, body {
 
 .dot {
 	background-color: black !important;
+}
+
+.srv-validation-message {
+	font-size: .75rem;
 }
 
