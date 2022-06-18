@@ -2,8 +2,8 @@ import '../styles/globals.css';
 import Script from 'next/script';
 import UserContext from '../lib/context';
 import useUserData from '../lib/userHooks';
-import TopBar from '../components/navigation/TopBar';
-import BottomBar from '../components/navigation/BottomBar';
+import IndexLayout from '../layouts/IndexLayout';
+
 
 function MyApp({ Component, pageProps }) {
 
@@ -25,9 +25,14 @@ function MyApp({ Component, pageProps }) {
 			/>
 
 			<UserContext.Provider value={userData}>
-				<TopBar />
-				<Component {...pageProps} />
-				<BottomBar />
+				{Component.PageLayout ?
+					<IndexLayout> 
+						<Component {...pageProps} />
+					</IndexLayout>
+					:
+					<Component {...pageProps} />
+				}
+
 			</UserContext.Provider>
 		</>
 	)
