@@ -2,32 +2,29 @@
 import React, {useContext} from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
-import HomeTeamLogo from '../../public/assets/HomeTeamWords.png';
+import HomeTeamLogo from '../../public/assets/HomeTeamNoWords.png';
 import UserContext from '../../lib/context';
 
 // Replace words with Icons hat represent each link
 function TopBar() {
 	const { user } = useContext(UserContext);
 	return (
-		<div className="fixed bg-white z-50 flex w-full justify-between items-center pl-2 pr-2">
-			<div style={{width: '180px', height: '60px', position: 'relative'}}>
-				<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
-			</div>
-			{	user && user.photoURL ?
+		<div className="fixed h-12 bg-white z-50 flex w-full justify-between items-center pl-3 pr-3">
+			<Link href="/home">
+				<div style={{width: '40px', height: '40px', position: 'relative'}}>
+					<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
+				</div>
+			</Link>
+			{user?.photoURL ?
 				<Link href="/user">
 					<a>
 						<Image height={40} width={40} className="rounded-full" src={user && user.photoURL} alt="User profile" />
 					</a>
 				</Link>
-				: <Link href="/login">
-					<a>
-						Login
-					</a>
-				</Link>
+				: null
 			}
 		</div>
-	)
-		
+	)	
 }
 
 export default TopBar

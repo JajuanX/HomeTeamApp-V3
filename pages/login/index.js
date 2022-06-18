@@ -2,19 +2,24 @@ import React, { useContext, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import SimpleReactValidator from 'simple-react-validator';
 import { signInWithGoogle, signInWithFacebook } from '../../lib/firebase';
-import HomeTeamLogo from '../../public/assets/HomeTeamWording.png';
 import FacebookLogo from '../../public/assets/facebookLogo.png';
 import GoogleLogo from '../../public/assets/googleLogo.png';
 import UserContext from '../../lib/context';
-// import EmailPasswordLogIn from '../components/email-password-login/EmailPasswordLogIn'
-import ButtonPictureWithText from '../../components/Button-picture-text';
-// import styles from './Login.module.scss'
+import styles from './Login.module.scss';
 
 export default function Login() {
-	const {user} = useContext(UserContext);
+	const {user, 
+		setUserEmail,
+		setUserPassword,
+		userEmail,
+		signUp,
+		userPassword} = useContext(UserContext);
 	const router = useRouter();
 	const isFirstRender = useRef(true);
+	const validator = useRef(new SimpleReactValidator());
+
 
 	useEffect(() => {
 		if (isFirstRender.current) {
@@ -22,14 +27,14 @@ export default function Login() {
 			return;
 		}
 		if (user) {
-			router.push('/')
+			router.push('/business/center')
 		}
 	}, [user, router]);
 	
 	const logInWithGoogle = () => {
 		signInWithGoogle()
 			.then(() => {
-				toast.success('Successful Login');
+				router.push('/business/center')
 			})
 			.catch(() => {
 				toast.error('Login Failed');
@@ -39,30 +44,24 @@ export default function Login() {
 	const logInWithFacebook = () => {
 		signInWithFacebook()
 			.then(() => {
-				toast.success('Successful Login');
+				router.push('/business/center')
 			})
 			.catch(error => {
 				if (error) toast.error('Login Failed');
 			})
 	}
 
-	// signUp = () => {
-	// 	const { userEmail, userPassword } = this.state;
-	// 	auth.createUserWithEmailAndPassword(userEmail, userPassword).then((user) => {
-	// 		this.setState({ user });
-	// 		createUserProfileDocument( user, {})
-	// 	})
-	// }
-	// signIn = () => {
-	// 	const userEmail = this.state.email;
-	// 	const userPassword = this.state.password;
-	// 	auth.signInWithEmailAndPassword(userEmail, userPassword).then((user) => {
-	// 		this.setState({ user });
-	// 		createUserProfileDocument( user, {})
-	// 	})
-	// }
+	const signUpWithUserAndPassword = (e) => {
+		e.preventDefault();
+		if (!validator.current.allValid()) {
+			validator.current.showMessages();
+			return;
+		}
+		signUp();
+	}
+
 	return (
-		<div className='page-container'>
+		<div className={styles.loginPage}>
 			<Toaster 
 				position='top-center'
 			/>
@@ -72,29 +71,80 @@ export default function Login() {
 				handleChange={this.handleChange} 
 				submit={this.signIn}
 				/> */}
-			<div className="flex flex-col items-center ">
-				<div className="my-20">
-					<Image width={200}
-						priority
-						height={200}
-						src={HomeTeamLogo} 
-						alt="Hometeam Logo" />
-				</div>
-				<div className="flex flex-col space-y-4 items-center">
-					<ButtonPictureWithText
-						text="CONTINUE WITH GOOGLE"
-						image={GoogleLogo}
-						width={20}
-						height={20}
-						click={logInWithGoogle}
-					/>
-					<ButtonPictureWithText
-						text="CONTINUE WITH FACEBOOK"
-						image={FacebookLogo}
-						width={20}
-						height={20}
-						click={logInWithFacebook}
-					/>
+			<div className="flex flex-col items-center max-h-screen relative top-28 ">
+				<h1>Sign Up</h1>
+				<form className={styles.signUpForm} onSubmit={(e) => signUpWithUserAndPassword(e)}>
+					<div className={styles.inputsContainers}>
+						<div className={styles.inputContainer}>
+							<label className="business-label" htmlFor="email">
+								Email
+							</label>
+							<input className='input-single'
+								placeholder="IE: john.doe@gmail.com"
+								type="email"
+								name="email"
+								value={userEmail}
+								onChange={(e) => setUserEmail(e.target.value)}
+								autoComplete="off"
+								onBlur={() => validator.current.showMessageFor('email')}
+							/>
+							{validator.current.message(
+								'email',
+								userEmail,
+								'required|email'
+							)}
+						</div>
+						<div className={styles.inputContainer}>
+							<label className="business-label" htmlFor="password">
+								Password
+							</label>
+							<input className='input-single'
+								placeholder="Enter a Password"
+								type="password"
+								name="password"
+								value={userPassword}
+								onChange={(e) => setUserPassword(e.target.value)}
+								autoComplete="off"
+								onBlur={() => validator.current.showMessageFor('password')}
+							/>
+							{validator.current.message(
+								'password',
+								userEmail,
+								['required', {max: 20}, {min: 6}]
+							)}
+						</div>
+					</div>
+					<button type='submit'>Sign Up</button>
+				</form>
+				<div className={styles.footer}>
+					<h3>or connect with</h3>
+					<div className={styles.buttonContainer}>
+						<button type='button' className={styles.googleLoginButton}
+							onClick={logInWithGoogle} >
+							<div className="flex shrink-0 mx-2">
+								<Image width={20}
+									height={20} 
+									src={GoogleLogo} 
+									alt="google" />
+							</div>
+							<span className={styles.buttonText}>
+								Google
+							</span>
+						</button>
+						<button type='button' className={styles.faceBookLoginButton}
+							onClick={logInWithFacebook} >
+							<div className="flex shrink-0 mx-2">
+								<Image width={20}
+									height={20} 
+									src={FacebookLogo} 
+									alt="google" />
+							</div>
+							<span className={styles.buttonText}>
+								Facebook
+							</span>
+						</button>
+					</div>
+
 				</div>
 			</div>
 		</div>

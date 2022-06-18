@@ -1,63 +1,69 @@
 .loginPage {
-	display: flex;
-	flex-direction: column;
-	justify-items: center;
-	height: 100vh;
 
-	.container {
-		margin: auto;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		height: 580px;
+	label {
+		color: gray;
+		font-weight: 300;
+		font-size: .85rem;
+	}
 
-		.photo {
-			height: 300px;
-			width: 300px;
-			margin: auto;
-		}
-	
-		.loginWithContainer {
-			margin: auto;
-			display: flex;
-			flex-direction: column;
-			justify-items: center;
-			justify-content: space-around;
-			height: 100px;
-	
-			button {
-				display: grid;
-				grid-template-columns: .25fr 3fr;
-				place-items: center;
-				border-radius: 500px;
-				height: 50px;
-				width: 300px;
-				padding: 10px 30px;
-				font-weight: bold;
-				font-size: 25px;
-				margin-top: 30px;
-				
-				.photo {
-					height: 25px;
-				}
-			}
-			
-			#facebook {
-				background-color: #3578E5;
-				color: white;
+	h1 {
+		font-size: 1.5rem;
+	}
 
-				.photo {
-					height: 35px;
-					margin-left: -5px;
-				}
-			}
-
-			#google {
-				background-color: #cacaca;
-				color: black;
-			}
+	.signUpForm {
+		button {
+			margin: 0 auto;
+			background-color: #ef5d30;
+			width: 400px;
+			padding: 5px 10px;
+			border-radius: 5px;
+			color: white;
 		}
 	}
 
+	.inputsContainers {
+		width: 400px;
+	}
 
+	.inputContainer {
+		width: 100%;
+		padding-bottom: 20px;
+	}
+
+
+
+	.footer {
+		position: fixed;
+		bottom: 60px;
+		width: 80%;
+
+		h3 {
+			color: gray;
+			font-size: .85rem;
+			text-align: center;
+			margin-bottom: 16px;
+		}
+
+		.buttonContainer {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+
+			.faceBookLoginButton, .googleLoginButton {
+				display: flex;
+				flex-direction: row;
+				background-color: #485890;
+				color: white;
+				border-radius: 12px;
+				width: 150px;
+				padding: 8px 12px;
+				align-items: center;
+			}
+			
+			.googleLoginButton {
+				background-color: #C3513F;
+				margin-right: 10px;
+			}
+		}
+	}
 }

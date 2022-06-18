@@ -11,6 +11,7 @@ import Image from 'next/image';
 import styles from './Edit.module.scss';
 import useEditBusinessForm from '../../../lib/useEditBusinessForm';
 import UserContext from '../../../lib/context';
+import IndexLayout from '../../../layouts/IndexLayout';
 
 function EditBusiness() {
 	const {
@@ -76,8 +77,13 @@ function EditBusiness() {
 			isFirstRender.current = false; // toggle flag after first render/mounting
 			return;
 		}
+
+		if (!user) {
+			router.push('/login')
+		}
+
 		if (user?.userBusinesses.length === 0) {
-			router.push('/')
+			router.push('/business/create')
 		}
 	}, [user]);
 
@@ -683,5 +689,7 @@ function EditBusiness() {
 		</>
 	);
 }
+
+EditBusiness.PageLayout = IndexLayout;
 
 export default EditBusiness;

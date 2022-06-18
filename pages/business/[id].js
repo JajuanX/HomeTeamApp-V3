@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import Head from 'next/head';
 import { Carousel } from 'react-responsive-carousel';
+import IndexLayout from '../../layouts/IndexLayout';
 import { capitalizeFirstLetter, fetcher } from '../../utils/utilities';
 import Icon from '../../components/Business-Icon';
 import styles from './Business.module.scss';
@@ -216,6 +217,8 @@ function Business() {
 		</div>
 	)
 }
+
+Business.PageLayout = IndexLayout;
 
 export default Business
 
