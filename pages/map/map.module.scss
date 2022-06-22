@@ -1,11 +1,12 @@
 .businessMap {
-	padding-top: 60px;
+	padding-top: 80px;
 	min-height: 100vh;
 	position: fixed;
 
 	.businessContainer {
-		max-height: 305px;
+		max-height: 450px;
 		overflow-y: auto;
+		padding-bottom: 180px;
 	}
 
 	.categoryContainer {
