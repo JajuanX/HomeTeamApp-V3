@@ -1,0 +1,11 @@
+.bottomBarContainer {
+	display: flex;
+	height: 80px;
+	width: 100%;
+	padding: 15px 20px 25px;
+	flex-direction: row;
+	justify-content: space-between;
+	position: fixed;
+	background-color: white;
+	bottom: 0;
+}
