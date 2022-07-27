@@ -18,10 +18,15 @@
 		.dropdownContainer {
 			display: flex;
 			flex-direction: row;
+
+			button {
+				height: 35px;
+			}
 			.dropDown {
 				background-color: black;
 				width: max-content;
 				color: white;
+				height: 35px;
 				padding: 3px 15px;
 				border-radius: 15px;
 				display: flex;

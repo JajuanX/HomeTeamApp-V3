@@ -12,11 +12,6 @@ import IndexLayout from '../../layouts/IndexLayout';
 export default function UserProfile() {
 	const {user, handleUploadChange} = useContext(UserContext);
 
-	// const onChangeValue = (event) => {
-	// 	setGender(event.target.value);
-	// 	console.log(event.target.value);
-	//   }
-	console.log(user);
 	return (
 		<div className={styles.userProfile}>
 			<Toaster 
