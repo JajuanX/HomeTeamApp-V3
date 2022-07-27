@@ -40,7 +40,7 @@ function TopBar() {
 		<div className={styles.topBarContainer}>
 			<div className={styles.left}>
 				<Link href="/home">
-					<div style={{width: '30px', height: '30px', position: 'relative'}}>
+					<div style={{width: '35px', height: '35px', position: 'relative'}}>
 						<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
 					</div>
 				</Link>
@@ -64,7 +64,7 @@ function TopBar() {
 			{user?.photoURL ?
 				<Link href="/user">
 					<a>
-						<Image height={30} width={30} className="rounded-full" src={user && user.photoURL} alt="User profile" />
+						<Image height={35} width={35} className="rounded-full" src={user && user.photoURL} alt="User profile" />
 					</a>
 				</Link>
 				: 
