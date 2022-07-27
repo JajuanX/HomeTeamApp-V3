@@ -2,11 +2,49 @@
 	display: flex;
 	height: 80px;
 	width: 100%;
-	padding: 25px 20px 15px;
+	padding: 25px 20px 20px;
 	flex-direction: row;
 	justify-content: space-between;
 	position: fixed;
 	background-color: white;
 	top: 0;
 	z-index: 100;
+	box-shadow: 0px 0px 2px lightgrey;
+
+	.left {
+		display: flex;
+		flex-direction: row;
+
+		.dropdownContainer {
+			display: flex;
+			flex-direction: row;
+			.dropDown {
+				background-color: black;
+				width: max-content;
+				color: white;
+				padding: 3px 15px;
+				border-radius: 15px;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				margin-left: 30px;
+		
+				span {
+					font-size: .75rem;
+				}
+		
+				.triangle {
+					width: 0; 
+					height: 0; 
+					border-left: 5px solid transparent;
+					border-right: 5px solid transparent;
+					border-top: 8px solid rgb(255, 255, 255);
+					margin-left: 10px;
+					margin-top: 3px;
+				}
+		}
+
+		}
+	}
+
 }

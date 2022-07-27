@@ -3,26 +3,10 @@ import GoogleMapReact from 'google-map-react';
 import q from 'q';
 import axios from 'axios'
 import styles from './map.module.scss';
-import BusinessIcon from '../../components/Business-Icon';
 import BusinessRow from '../../components/business-row/BusinessRow';
 import useFetchAllBusinesses from '../../lib/useFetchAllBusinesses';
 import IndexLayout from '../../layouts/IndexLayout';
-import ListMapLayout from '../../layouts/ListMapLayout';
-
-
-function LocationPin({ business, showBusiness}) {
-	const pinnedBusiness = business;
-	return (
-		<button type='button' className={styles.pin} onClick={() => showBusiness(pinnedBusiness)}>
-			<div>
-				<BusinessIcon 
-					icon={business?.category}
-					size="40px"
-				/>
-			</div>
-			<h6 style={{fontSize: '12px', width: '60px'}}>{business.name}</h6>
-		</button>
-	)}
+import LocationPin from '../../components/location-pin/LocationPin';
 
 export default function BusinessMap() {
 	const { data: allBusinesses } = useFetchAllBusinesses();
@@ -86,70 +70,68 @@ export default function BusinessMap() {
 	}
 
 	return (
-		<ListMapLayout>
-			<div className={styles.businessMap}>
-				<div style={{ height: '300px', width: '100%' }}>
-					{allBusinesses?.length > 0 && <GoogleMapReact
-						bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY }}
-						defaultCenter={location}
-						defaultZoom={13}
-						hoverDistance={40}
-						onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-						yesIWantToUseGoogleMapApiInternals
-					>
-						{
-							allBusinesses && allBusinesses.map( eachBusiness => (
-								<LocationPin
-									key={eachBusiness?.id}
-									showBusiness={businessSelected}
-									business={eachBusiness}
-									lat={eachBusiness?.coordinates?.latitude}
-									lng={eachBusiness?.coordinates?.longitude}
-									icon={eachBusiness?.category}
-								/>
-							))
-						}
-					</GoogleMapReact>}
-				</div> 
-				<div className={styles.categoryContainer}>
+		<div className={styles.businessMap}>
+			<div style={{ height: '300px', width: '100%' }}>
+				{allBusinesses?.length > 0 && <GoogleMapReact
+					bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY }}
+					defaultCenter={location}
+					defaultZoom={13}
+					hoverDistance={40}
+					onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+					yesIWantToUseGoogleMapApiInternals
+				>
 					{
-						categories.map((eachCategory) => (
-							<button 
-								key={eachCategory}
-								className={styles.category}  
-								type="button" 
-								value={eachCategory} 
-								onClick={() => getSelectedCategory(eachCategory)}
-							>
-								<span>{eachCategory}</span>
-							</button>
+						allBusinesses && allBusinesses.map( eachBusiness => (
+							<LocationPin
+								key={eachBusiness?.id}
+								showBusiness={businessSelected}
+								business={eachBusiness}
+								lat={eachBusiness?.coordinates?.latitude}
+								lng={eachBusiness?.coordinates?.longitude}
+								icon={eachBusiness?.category}
+							/>
 						))
 					}
-				</div>
-				<div className={styles.businessContainer}>
-					{ category !== 'all' && categoryBusinesses?.map( eachBusiness => (
-						<BusinessRow
-							key={eachBusiness?.id}
-							business={eachBusiness}
-						/>
-					))}
-					{category === 'all' &&
+				</GoogleMapReact>}
+			</div> 
+			<div className={styles.categoryContainer}>
+				{
+					categories.map((eachCategory) => (
+						<button 
+							key={eachCategory}
+							className={styles.category}  
+							type="button" 
+							value={eachCategory} 
+							onClick={() => getSelectedCategory(eachCategory)}
+						>
+							<span>{eachCategory}</span>
+						</button>
+					))
+				}
+			</div>
+			<div className={styles.businessContainer}>
+				{ category !== 'all' && categoryBusinesses?.map( eachBusiness => (
+					<BusinessRow
+						key={eachBusiness?.id}
+						business={eachBusiness}
+					/>
+				))}
+				{category === 'all' &&
 						allBusinesses?.map( eachBusiness => (
 							<BusinessRow
 								key={eachBusiness?.id}
 								business={eachBusiness}
 							/>
 						))
-					}
-					{ category !== 'all' && categoryBusinesses?.length === 0 && 
+				}
+				{ category !== 'all' && categoryBusinesses?.length === 0 && 
 						<div className='text-center'>
 							No businesses found.
 						</div>
-					}
+				}
 
-				</div>
 			</div>
-		</ListMapLayout>
+		</div>
 	)
 }
 

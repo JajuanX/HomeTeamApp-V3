@@ -1,11 +1,13 @@
 import React, {useContext} from 'react';
 import {Toaster} from 'react-hot-toast';
 import Image from 'next/image';
+import Link from 'next/link';
 import { signOut } from '../../lib/firebase';
 import styles from './user.module.scss';
 import 'firebase/functions';
 import UserContext from '../../lib/context';
 import IndexLayout from '../../layouts/IndexLayout';
+
 
 export default function UserProfile() {
 	const {user, handleUploadChange} = useContext(UserContext);
@@ -20,25 +22,32 @@ export default function UserProfile() {
 			<Toaster 
 				position='top-center'
 			/>
-			<div className="photo-upload-container">
-				{ user?.photoURL &&
-					<Image src={user?.photoURL && user?.photoURL} height={150} width={150} alt="User" />
-				}
+			<div className={styles.userActions}>
+				<div className="photo-upload-container">
+					{ user?.photoURL &&
+						<Image src={user?.photoURL && user?.photoURL} height={150} width={150} alt="User" />
+					}
+				</div>
+				<div className={styles.buttonContainer}>
+					<button className="signout-button" type="button" onClick={signOut}>Sign Out</button> 
+					<label className='upload-image'>
+						<input
+							name="photoURL"
+							placeholder="Photo"
+							type="file"
+							onChange={(e) => handleUploadChange(e)}
+							autoComplete="off"
+							title=""
+						/>
+						<span> - Edit Photo</span>
+					</label> 
+				</div>
 			</div>
-			<div className={styles.buttonContainer}>
-				<button className="signout-button" type="button" onClick={signOut}>Sign Out</button> 
-				<label className='upload-image'>
-					<input
-						name="photoURL"
-						placeholder="Photo"
-						type="file"
-						onChange={(e) => handleUploadChange(e)}
-						autoComplete="off"
-						title=""
-					/>
-					<span> - Edit Photo</span>
-				</label> 
-			</div>
+			<Link href="/business/center">
+				<div style={{width: '30px', height: '30px', position: 'relative'}}>
+					Business Center
+				</div>
+			</Link>
 			{/* <div className={styles.questionsContainer}>
 				<div>
 					<label htmlFor='pillar'>
