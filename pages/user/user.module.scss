@@ -1,10 +1,12 @@
 .userProfile {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 60px;
-	img {
-		border-radius: 500px;
+	.userActions {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 80px;
+		img {
+			border-radius: 500px;
+		}
 	}
 
 	.buttonContainer {

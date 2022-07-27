@@ -5,12 +5,10 @@ import Masonry from '@mui/lab/Masonry';
 import BusinessTileDisplay from '../../components/business-card/BusinessCard';
 import styles from './Index.module.scss';
 import IndexLayout from '../../layouts/IndexLayout';
-import ListMapLayout from '../../layouts/ListMapLayout';
 
 function Home() {
 	const [businesses, setBusinesses] = useState([]);
 	const [lastBusiness, setLastBusiness] = useState([]);
-
 
 	useEffect(() => {
 		fetch(`api/businesses/8`, {
@@ -50,10 +48,9 @@ function Home() {
 	}
 
 	return (
-		<ListMapLayout>
-			<div className={styles.homeContainer} data-testid='home-page'>
-				<div className={styles.businessesContainer}>
-					{ businesses && 
+		<div className={styles.homeContainer} data-testid='home-page'>
+			<div className={styles.businessesContainer}>
+				{ businesses && 
 					<Box>
 						<Masonry
 							columns={2}
@@ -73,15 +70,14 @@ function Home() {
 							}
 						</Masonry>
 					</Box>}
-				</div>
-
-				<div className="waypoint">
-					<Waypoint
-						onEnter={nextPage}
-					/>
-				</div>
 			</div>
-		</ListMapLayout>
+
+			<div className="waypoint">
+				<Waypoint
+					onEnter={nextPage}
+				/>
+			</div>
+		</div>
 	)
 }
 
