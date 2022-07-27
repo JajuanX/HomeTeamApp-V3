@@ -71,81 +71,79 @@ export default function Login() {
 				handleChange={this.handleChange} 
 				submit={this.signIn}
 				/> */}
-			<div className="flex flex-col items-center max-h-screen relative top-28 ">
-				<h1>Sign Up</h1>
-				<form className={styles.signUpForm} onSubmit={(e) => signUpWithUserAndPassword(e)}>
-					<div className={styles.inputsContainers}>
-						<div className={styles.inputContainer}>
-							<label className="business-label" htmlFor="email">
+			<h1>Sign Up</h1>
+			<form className={styles.signUpForm} onSubmit={(e) => signUpWithUserAndPassword(e)}>
+				<div className={styles.inputsContainers}>
+					<div className={styles.inputContainer}>
+						<label className="business-label" htmlFor="email">
 								Email
-							</label>
-							<input className='input-single'
-								placeholder="IE: john.doe@gmail.com"
-								type="email"
-								name="email"
-								value={userEmail}
-								onChange={(e) => setUserEmail(e.target.value)}
-								autoComplete="off"
-								onBlur={() => validator.current.showMessageFor('email')}
-							/>
-							{validator.current.message(
-								'email',
-								userEmail,
-								'required|email'
-							)}
-						</div>
-						<div className={styles.inputContainer}>
-							<label className="business-label" htmlFor="password">
+						</label>
+						<input className='input-single'
+							placeholder="IE: john.doe@gmail.com"
+							type="email"
+							name="email"
+							value={userEmail}
+							onChange={(e) => setUserEmail(e.target.value)}
+							autoComplete="off"
+							onBlur={() => validator.current.showMessageFor('email')}
+						/>
+						{validator.current.message(
+							'email',
+							userEmail,
+							'required|email'
+						)}
+					</div>
+					<div className={styles.inputContainer}>
+						<label className="business-label" htmlFor="password">
 								Password
-							</label>
-							<input className='input-single'
-								placeholder="Enter a Password"
-								type="password"
-								name="password"
-								value={userPassword}
-								onChange={(e) => setUserPassword(e.target.value)}
-								autoComplete="off"
-								onBlur={() => validator.current.showMessageFor('password')}
-							/>
-							{validator.current.message(
-								'password',
-								userEmail,
-								['required', {max: 20}, {min: 6}]
-							)}
-						</div>
+						</label>
+						<input className='input-single'
+							placeholder="Enter a Password"
+							type="password"
+							name="password"
+							value={userPassword}
+							onChange={(e) => setUserPassword(e.target.value)}
+							autoComplete="off"
+							onBlur={() => validator.current.showMessageFor('password')}
+						/>
+						{validator.current.message(
+							'password',
+							userEmail,
+							['required', {max: 20}, {min: 6}]
+						)}
 					</div>
-					<button type='submit'>Sign Up</button>
-				</form>
-				<div className={styles.footer}>
-					<h3>or connect with</h3>
-					<div className={styles.buttonContainer}>
-						<button type='button' className={styles.googleLoginButton}
-							onClick={logInWithGoogle} >
-							<div className="flex shrink-0 mx-2">
-								<Image width={20}
-									height={20} 
-									src={GoogleLogo} 
-									alt="google" />
-							</div>
-							<span className={styles.buttonText}>
-								Google
-							</span>
-						</button>
-						<button type='button' className={styles.faceBookLoginButton}
-							onClick={logInWithFacebook} >
-							<div className="flex shrink-0 mx-2">
-								<Image width={20}
-									height={20} 
-									src={FacebookLogo} 
-									alt="google" />
-							</div>
-							<span className={styles.buttonText}>
-								Facebook
-							</span>
-						</button>
-					</div>
-
 				</div>
+				<button type='submit'>Sign Up</button>
+			</form>
+			<div className={styles.footer}>
+				<h3>or connect with</h3>
+				<div className={styles.buttonContainer}>
+					<button type='button' className={styles.googleLoginButton}
+						onClick={logInWithGoogle} >
+						<div className="flex shrink-0 mx-2">
+							<Image width={20}
+								height={20} 
+								src={GoogleLogo} 
+								alt="google" />
+						</div>
+						<span className={styles.buttonText}>
+								Google
+						</span>
+					</button>
+					<button type='button' className={styles.faceBookLoginButton}
+						onClick={logInWithFacebook} >
+						<div className="flex shrink-0 mx-2">
+							<Image width={20}
+								height={20} 
+								src={FacebookLogo} 
+								alt="google" />
+						</div>
+						<span className={styles.buttonText}>
+								Facebook
+						</span>
+					</button>
+				</div>
+
 			</div>
 		</div>
 	)

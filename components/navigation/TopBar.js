@@ -44,24 +44,22 @@ function TopBar() {
 						<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
 					</div>
 				</Link>
-				<div>
-					<OutsideClickHandler onOutsideClick={() => closeMenu()}>
-						<div className={styles.dropdownContainer}>
-							<button className='relative' style={{width: '30px', height: '30px', position: 'relative'}} 
-								type='button' 
-								onClick={() => openMenu()}
-							>
-								<div className={styles.dropDown}>
-									<span>{cleanPathName(router.pathname)}</span>
-									<div className={styles.triangle}/>
-								</div>
-							</button>
-							{isMenuOpen && 
+				<OutsideClickHandler onOutsideClick={() => closeMenu()}>
+					<div className={styles.dropdownContainer}>
+						<button 
+							type='button' 
+							onClick={() => openMenu()}
+						>
+							<div className={styles.dropDown}>
+								<span>{cleanPathName(router.pathname)}</span>
+								<div className={styles.triangle}/>
+							</div>
+						</button>
+						{isMenuOpen && 
 								<CreatorMenu onOutsideClick={() => closeMenu()}/>
-							}
-						</div>
-					</OutsideClickHandler>
-				</div>
+						}
+					</div>
+				</OutsideClickHandler>
 			</div>
 			{user?.photoURL ?
 				<Link href="/user">
@@ -69,7 +67,10 @@ function TopBar() {
 						<Image height={30} width={30} className="rounded-full" src={user && user.photoURL} alt="User profile" />
 					</a>
 				</Link>
-				: null
+				: 
+				<Link href="/login">
+					Login
+				</Link>
 			}
 		</div>
 	)	
