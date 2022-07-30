@@ -8,7 +8,7 @@ function BusinessTileDisplay({business}) {
 	return (
 		<Link href={`/business/${business.id}`} passHref>
 			<div className={styles.businessTileDisplay} key={business.id}>
-				<div className='rounded-3xl'>
+				<div className={styles.imageContainer}>
 					{ business?.cover_photo?.url &&
 						<Image 
 							src={business?.cover_photo.url} 
