@@ -11,7 +11,6 @@ import Icon from '../../components/Business-Icon';
 import styles from './Business.module.scss';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-
 function Business() {
 	const router = useRouter();
 	const { id } = router.query;	
@@ -51,8 +50,8 @@ function Business() {
 					<p className={styles.description}>{business?.description}</p>
 				</div>
 
-				<h2>Contact Us</h2>
 				<div className={styles.contactContainer}>
+					<h2>Contact Us</h2>
 					<div className={styles.contactDetail}>
 						<a target="_blank" 
 							rel="noopener noreferrer"
@@ -83,14 +82,13 @@ function Business() {
 					</div>
 				</div>
 				
-				<h2>Follow Us</h2>
 				<div className={styles.socialMediaContainer}>
 					{ business?.social_media && 
 						business.social_media.filter(platform => platform.url).map((platform) => (
-							<div className="link-container"
+							<div className={styles.mediaIcon}
 								key={platform?.type}>
 								<a target="_blank" rel="noopener noreferrer" href={platform?.url}>
-									<Icon icon={platform?.type} size="60"/>
+									<Icon icon={platform?.type} size="40"/>
 								</a>
 							</div>
 						))
@@ -119,10 +117,10 @@ function Business() {
 
 				<div className={styles.photosContainer}>
 					<h2>Photos</h2>
-					<Carousel axis='horizontal' showThumbs={false} centerMode >
+					<Carousel axis='horizontal' showStatus={false} showThumbs={false} showIndicators={false} centerMode>
 						<div key={business?.featurePhoto1?.url} className={styles.photoContainer}>
 							{business?.featurePhoto1 && <Image
-								layout='responsive'
+								objectFit='contain'
 								height={business?.featurePhoto1.height}
 								width={business?.featurePhoto1.width}
 								src={business?.featurePhoto1?.url}
@@ -149,13 +147,12 @@ function Business() {
 						</div>
 					</Carousel>
 				</div>
-				
 
-				<div>
+				<div className={styles.mapContainer}>
 					<h2>View on Map</h2>
 					{ 
 						business?.coordinates && 
-						<div style={{ height: '400px', width: '95vw' }}>
+						<div style={{ height: '400px', width: '100vw' }}>
 							<GoogleMapReact
 								bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY }}
 								defaultCenter={location}
@@ -171,6 +168,7 @@ function Business() {
 					}
 
 				</div>
+				
 				{/* 
 				<div className="review-container review-section section">
 					<h1>REVIEWS</h1>

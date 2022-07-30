@@ -2,7 +2,7 @@
 	display: flex;
 	height: 80px;
 	width: 100%;
-	padding: 25px 20px 20px;
+	padding: 25px 16px 20px;
 	flex-direction: row;
 	justify-content: space-between;
 	position: fixed;
@@ -23,7 +23,7 @@
 				height: 35px;
 			}
 			.dropDown {
-				background-color: black;
+				background-color: #444;
 				width: max-content;
 				color: white;
 				height: 35px;

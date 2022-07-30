@@ -1,14 +1,20 @@
 .businessTileDisplay {
 	min-height: 125px;
 
+	.imageContainer {
+		img {
+			border-radius: 15px;
+		}
+	}
 	.infoContainer {
 		.name {
-			font-size: 1rem;
+			font-size: .70rem;
+			font-weight: 500;
+			color: #444;
 		}
 
 		.category {
-			font-size: .75rem;
-			line-height: 12px
+			font-size: .70rem;
 		}
 	}
 }

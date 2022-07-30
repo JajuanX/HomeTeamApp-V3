@@ -43,3 +43,7 @@ html, body {
 	font-size: .75rem;
 }
 
+
+li.slide {
+	align-self: center;
+}
