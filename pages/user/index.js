@@ -1,16 +1,28 @@
-import React, {useContext} from 'react';
+import React, {useContext, useRef, useEffect} from 'react';
 import {Toaster} from 'react-hot-toast';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { signOut } from '../../lib/firebase';
 import styles from './user.module.scss';
 import 'firebase/functions';
 import UserContext from '../../lib/context';
 import IndexLayout from '../../layouts/IndexLayout';
 
-
 export default function UserProfile() {
 	const {user, handleUploadChange} = useContext(UserContext);
+	const isFirstRender = useRef(true);
+	const router = useRouter();
+
+	useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false // toggle flag after first render/mounting
+			return;
+		}
+		if (!user) {
+			router.push('/')
+		}
+	}, [user, router]);
 
 	return (
 		<div className={styles.userProfile}>

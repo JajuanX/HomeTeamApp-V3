@@ -34,16 +34,16 @@ function Business() {
 				<meta property="og:description" content={business?.description} />
 				<meta property="og:image" content={business?.cover_photo.url} />
 			</Head>
-			{ business?.cover_photo?.url&& 
-				<div className={styles.imageContainer}>
-					<Image objectFit='contain'
-						height={business?.cover_photo?.height}
-						width={business?.cover_photo?.width}
-						src={business?.cover_photo?.url} 
-						alt={business?.name}/>
-				</div>
-			}
 			<div className={styles.business}>
+				{ business?.cover_photo?.url&& 
+					<div className={styles.imageContainer}>
+						<Image objectFit='contain'
+							height={business?.cover_photo?.height}
+							width={business?.cover_photo?.width}
+							src={business?.cover_photo?.url} 
+							alt={business?.name}/>
+					</div>
+				}
 				<div className={styles.infoContainer}>
 					<h1>{business?.name}</h1>
 					<span>{business && capitalizeFirstLetter(business.category)}</span>
@@ -129,7 +129,7 @@ function Business() {
 						</div>
 						<div key={business?.featurePhoto2?.url} className={styles.photoContainer}>
 							{business?.featurePhoto2 && <Image
-								layout='responsive'
+								objectFit='contain'
 								height={business?.featurePhoto2.height}
 								width={business?.featurePhoto2.width}
 								src={business?.featurePhoto2?.url}
@@ -138,7 +138,7 @@ function Business() {
 						</div>
 						<div key={business?.featurePhoto3?.url} className={styles.photoContainer}>
 							{business?.featurePhoto3 && <Image
-								layout='responsive'
+								objectFit='contain'
 								height={business?.featurePhoto3.height}
 								width={business?.featurePhoto3.width}
 								src={business?.featurePhoto3?.url}
@@ -152,7 +152,7 @@ function Business() {
 					<h2>View on Map</h2>
 					{ 
 						business?.coordinates && 
-						<div style={{ height: '400px', width: '100vw' }}>
+						<div style={{ height: '400px', width: '100%' }}>
 							<GoogleMapReact
 								bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY }}
 								defaultCenter={location}
