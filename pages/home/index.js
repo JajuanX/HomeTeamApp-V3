@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Waypoint } from 'react-waypoint';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
+import { useWindowWidth } from '@react-hook/window-size';
 import BusinessTileDisplay from '../../components/business-card/BusinessCard';
 import styles from './Index.module.scss';
 import IndexLayout from '../../layouts/IndexLayout';
@@ -9,6 +10,7 @@ import IndexLayout from '../../layouts/IndexLayout';
 function Home() {
 	const [businesses, setBusinesses] = useState([]);
 	const [lastBusiness, setLastBusiness] = useState([]);
+	const onlyWidth = useWindowWidth()
 
 	useEffect(() => {
 		fetch(`api/businesses/8`, {
@@ -53,7 +55,7 @@ function Home() {
 				{ businesses && 
 					<Box>
 						<Masonry
-							columns={2}
+							columns={onlyWidth < 450 ? 2: 4}
 							spacing={4}
 							defaultHeight={450}
 							defaultColumns={2}
