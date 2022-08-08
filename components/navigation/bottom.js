@@ -4,14 +4,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useRouter } from 'next/router';
-import styles from './topbar.module.scss';
-import HomeTeamLogo from '../../public/assets/HomeTeam.svg';
+import styles from './bottom.module.scss';
+import HomeTeamLogo from '../../public/assets/homeIcon.svg';
 import UserContext from '../../lib/context';
 import CreatorMenu from './creator-menu/CreatorMenu';
 import { capitalizeFirstLetter } from '../../utils/utilities';
 
 // Replace words with Icons hat represent each link
-function TopBar() {
+function Bottom() {
 	const { user } = useContext(UserContext);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const router = useRouter();
@@ -37,7 +37,7 @@ function TopBar() {
 		return pathName;
 	}
 	return (
-		<div className={styles.topBarContainer}>
+		<div className={styles.bottomContainer}>
 			<div className={styles.left}>
 				<Link href="/home">
 					<div style={{width: '35px', height: '35px', position: 'relative'}}>
@@ -76,4 +76,4 @@ function TopBar() {
 	)	
 }
 
-export default TopBar
+export default Bottom

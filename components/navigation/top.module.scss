@@ -1,0 +1,15 @@
+.topContainer {
+	display: flex;
+	height: 60px;
+	width: 100%;
+	padding: 10px 16px;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	background-color: white;
+	top: 0;
+	z-index: 100;
+	box-shadow: 0px 0px 2px lightgrey;
+
+}
