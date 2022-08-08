@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useContext, useState} from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
@@ -40,8 +39,11 @@ function Bottom() {
 		<div className={styles.bottomContainer}>
 			<div className={styles.left}>
 				<Link href="/home">
-					<div style={{width: '35px', height: '35px', position: 'relative'}}>
-						<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
+					<div className={styles.iconContainer}>
+						<div style={{width: '35px', height: '35px', position: 'relative'}}>
+							<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
+						</div>
+						<span className={styles.iconLabel}> Home</span>
 					</div>
 				</Link>
 				<OutsideClickHandler onOutsideClick={() => closeMenu()}>
@@ -61,17 +63,19 @@ function Bottom() {
 					</div>
 				</OutsideClickHandler>
 			</div>
-			{user?.photoURL ?
-				<Link href="/user">
-					<a>
-						<Image height={35} width={35} className="rounded-full" src={user && user.photoURL} alt="User profile" />
-					</a>
-				</Link>
-				: 
-				<Link href="/login">
-					Login
-				</Link>
-			}
+			<div className={styles.profilePicContainer}>
+				{user?.photoURL ?
+					<Link href="/user">
+						<a href='foo'>
+							<Image height={40} width={40} className="rounded-full" src={user && user.photoURL} alt="User profile" />
+						</a>
+					</Link>
+					: 
+					<Link href="/login">
+						Login
+					</Link>
+				}
+			</div>
 		</div>
 	)	
 }
