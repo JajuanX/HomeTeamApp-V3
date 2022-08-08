@@ -1,17 +1,21 @@
+import Link from "next/link";
 import React from "react";
 import BusinessIcon from '../Business-Icon';
 import styles from './location-pin.module.scss';
 
-function LocationPin({ business, showBusiness}) {
-	const pinnedBusiness = business;
+function LocationPin({ business }) {
 	return (
-		<button type='button' className={styles.pin} onClick={() => showBusiness(pinnedBusiness)}>
-			<BusinessIcon 
-				icon={business?.category}
-				size="60px"
-			/>
-			<h3 style={{width: '60px'}}>{business.name}</h3>
-		</button>
+		<Link href={`/business/${business.id}`} passHref>
+			<div className={styles.pin}>
+				<div className={styles.iconContainer}>
+					<BusinessIcon 
+						icon={business?.category}
+						size="40px"
+					/>
+				</div>
+				<div style={{width: '60px'}}>{business.name}</div>
+			</div>
+		</Link>
 	)
 }
 
