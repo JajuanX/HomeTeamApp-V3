@@ -10,6 +10,7 @@ import { capitalizeFirstLetter, fetcher } from '../../utils/utilities';
 import Icon from '../../components/Business-Icon';
 import styles from './Business.module.scss';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import LoadingSplash from '../../components/loading/LoadingSplash'
 
 function Business() {
 	const router = useRouter();
@@ -28,12 +29,13 @@ function Business() {
 	return (
 		<div data-testid='business-page' className={styles.businessPage}>
 			<Head>
-				<title>HomeTeam - {business?.name}</title>
+				<title>{business?.name}</title>
 				<meta name="description" content={business?.description}/>
 				<meta property="og:title" content={business?.name} />
 				<meta property="og:description" content={business?.description} />
 				<meta property="og:image" content={business?.cover_photo.url} />
 			</Head>
+			{ !business && LoadingSplash('Loading Business')}
 			<div className={styles.business}>
 				{ business?.cover_photo?.url&& 
 					<div className={styles.imageContainer}>
