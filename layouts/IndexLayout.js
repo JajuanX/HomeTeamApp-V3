@@ -1,11 +1,13 @@
 import React from "react";
-import TopBar from '../components/navigation/TopBar';
+import Bottom from '../components/navigation/bottom';
+import Top from '../components/navigation/Top';
 
 function IndexLayout({children}) {
 	return (
 		<div>
-			<TopBar />
+			<Top />
 			{children}
+			<Bottom />
 		</div>
 	)
 }

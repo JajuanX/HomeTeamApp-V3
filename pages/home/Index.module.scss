@@ -1,12 +1,39 @@
 .homeContainer {
-	margin: 0;
-	padding: 80px 0;
-	min-height: 100vw;
+	min-height: 100vh;
+	padding-top: 60px;
+	.container {
+		width: 100vw;
+	}
 
 	.waypoint {
 		height: 100px;
 		width: 100%;
 		display: grid;
 		place-items: center;
+	}
+
+	.businessContainer {
+		display: grid;
+		place-items: center;
+		width: auto;
+	}
+
+	.nearbyContainer {
+		display: grid;
+		place-items: end;
+		padding: 12px 0;
+		margin: 0 24px 0;
+		button {
+			position: relative;
+			width: max-content;
+			text-align: right;
+			display: flex;
+			align-items: center;
+			color: #F05F24;
+			span {
+				margin-left: 5px;
+				font-size: .8rem;
+			}
+		}
 	}
 }
