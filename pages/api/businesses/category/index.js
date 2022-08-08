@@ -12,6 +12,7 @@ const handler = nc({
 		const nextPage = firestore.collection("businesses").orderBy(field)
 		const businessesRef = await nextPage.get()
 		const results = businessesRef.docs.map(collectIdsandDocs);
+		console.log(results);
 		res.send(results);
 	})
 

@@ -1,17 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import q from 'q';
 import axios from 'axios'
 import styles from './map.module.scss';
-import BusinessRow from '../../components/business-row/BusinessRow';
-import useFetchAllBusinesses from '../../lib/useFetchAllBusinesses';
 import IndexLayout from '../../layouts/IndexLayout';
 import LocationPin from '../../components/location-pin/LocationPin';
 
 export default function BusinessMap() {
-	const { data: allBusinesses } = useFetchAllBusinesses();
-	const [categoryBusinesses, setCategoryBusinesses] = useState([])
-	const [category, setCategory] = useState('all')
+	const [allBusinesses, setAllBusinesses] = useState([]);
+
+	const getAllBusinesses = () => {
+		const _deferred = q.defer();
+		const errMsg = 'Fail to retrieve category'
+
+		axios
+			.get(`api/businesses/category`)
+			.then(response => {
+				console.log(response.data);
+				_deferred.resolve(response.data);
+			}).catch( error => {
+				_deferred.reject(Object.assign(errMsg, error));
+			})
+		return _deferred.promise;
+	}
+
+	useEffect(() => {
+		getAllBusinesses()
+			.then(response => {
+				console.log(response);
+				setAllBusinesses(response);
+			}).catch( err => {
+				console.log(err);
+			})
+	}, [])
 
 	const categories = [ 'All', 'Restaurants', 'Beauty', 'Church', 'Education', 'Event Planning', 
 		'Financial', 'Fitness', 'Graphic Design', 'Web Services', 'Videography', 'Photography',
@@ -48,22 +69,16 @@ export default function BusinessMap() {
 		return _deferred.promise;
 	}
 
-	const getAllBusinesses = async () => {
-		setCategory('all');
-		setCategoryBusinesses([])
-	}
-
 	const handle_getCategory = (response, _selectedCat) => {
 		console.log(_selectedCat);
-		setCategory(_selectedCat);
-		setCategoryBusinesses(response)
+		setAllBusinesses(response);
 	}
 
 	const getSelectedCategory = (_selectedCat) => {
 		if (!_selectedCat === 'all') return getAllBusinesses();
-		setCategoryBusinesses([])
 		getCategory(_selectedCat)
 			.then((response) => {
+				if(response.length === 0) return;
 				handle_getCategory(response);
 			})
 			.catch( err => console.error(err))
@@ -71,11 +86,11 @@ export default function BusinessMap() {
 
 	return (
 		<div className={styles.businessMap}>
-			<div style={{ height: '300px', width: '100%' }}>
+			<div style={{ height: '70vh', width: '100%' }}>
 				{allBusinesses?.length > 0 && <GoogleMapReact
 					bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY }}
 					defaultCenter={location}
-					defaultZoom={13}
+					defaultZoom={12}
 					hoverDistance={40}
 					onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
 					yesIWantToUseGoogleMapApiInternals
@@ -108,28 +123,6 @@ export default function BusinessMap() {
 						</button>
 					))
 				}
-			</div>
-			<div className={styles.businessContainer}>
-				{ category !== 'all' && categoryBusinesses?.map( eachBusiness => (
-					<BusinessRow
-						key={eachBusiness?.id}
-						business={eachBusiness}
-					/>
-				))}
-				{category === 'all' &&
-						allBusinesses?.map( eachBusiness => (
-							<BusinessRow
-								key={eachBusiness?.id}
-								business={eachBusiness}
-							/>
-						))
-				}
-				{ category !== 'all' && categoryBusinesses?.length === 0 && 
-						<div className='text-center'>
-							No businesses found.
-						</div>
-				}
-
 			</div>
 		</div>
 	)
