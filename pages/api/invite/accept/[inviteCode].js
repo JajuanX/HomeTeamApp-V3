@@ -10,7 +10,7 @@ const handler = nc({
 	.get(async (req, res) => {
 		const {inviteCode} = req.query;
 		if(inviteCode) {
-			const inviteRef = await firestore.collection('invites').where('unique_id', '==', `${inviteCode}`);
+			const inviteRef = firestore.collection('invites').where('unique_id', '==', `${inviteCode}`);
 			const invitee = await inviteRef.get();
 			const found = invitee.docs.map(collectIdsandDocs)
 			res.send(found[0]);
@@ -19,7 +19,7 @@ const handler = nc({
 	.post(async (req, res) => {
 		const {inviteCode} = req.query;
 		if(inviteCode) {
-			const inviteRef = await firestore.collection('invites').where('unique_id', '==', `${inviteCode}`);
+			const inviteRef = firestore.collection('invites').where('unique_id', '==', `${inviteCode}`);
 			const invitee = await inviteRef.get();
 			const found = await invitee.docs.map(collectIdsandDocs)
 			const invitationRef = await firestore.doc(`invites/${found[0].id}`);

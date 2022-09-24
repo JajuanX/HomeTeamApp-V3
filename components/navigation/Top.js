@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import styles from './top.module.scss';
 import HomeTeamLogo from '../../public/assets/homeTeamWords.svg';
 import Backbutton from '../../public/assets/backButton.svg'
-import { capitalizeFirstLetter } from '../../utils/utilities';
 
 // Replace words with Icons hat represent each link
 function Bottom() {
