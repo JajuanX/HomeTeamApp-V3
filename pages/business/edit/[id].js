@@ -474,7 +474,7 @@ function EditBusiness() {
 									className={styles.photoupload}
 									name="cover_photo"
 									type="file"
-									onChange={(e) => handle_uploadChange(e, id)}
+									onChange={(e) => handle_uploadChange(e, id, user)}
 									autoComplete="off"
 									title=""
 								/>

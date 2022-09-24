@@ -3,6 +3,7 @@ import { Waypoint } from 'react-waypoint';
 import toast, { Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import Masonry from 'react-masonry-css'
+import useIsIOS from "../../lib/useIsIOS";
 import BusinessTileDisplay from '../../components/business-card/BusinessCard';
 import styles from './Index.module.scss';
 import Location from '../../public/assets/location.svg';
@@ -16,6 +17,8 @@ function Home() {
 	const [loadingNearby, setLoadingNearby] = useState(false);
 	const [loadingBusinesses, setLoadingBusinesses] = useState(false);
 	const [lastBusiness, setLastBusiness] = useState([]);
+	const { prompt } = useIsIOS();
+	console.log(prompt);
 
 	useEffect(() => {
 		setLoadingBusinesses(true)
@@ -85,9 +88,9 @@ function Home() {
 	}
 
 	const breakpointColumnsObj = {
-		default: 4,
+		default: 6,
 		1100: 3,
-		700: 2,
+		700: 3,
 		500: 2
 	};
 
@@ -112,6 +115,7 @@ function Home() {
 						}
 					</button>
 				</div>
+				{prompt && <h1>Hello world</h1>}
 				<div className={styles.businessContainer}>
 					{ businesses && !showingNearestLocation ? 
 						<Masonry

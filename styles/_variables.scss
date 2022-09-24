@@ -1,0 +1,579 @@
+/*
+  The list of variables are listed here:
+  ../node_modules/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss
+  https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+*/
+
+@use "sass:math";
+
+//== Colors
+$gray-base: #444;
+$gray: lighten($gray-base, 33.5%); // #555
+$gray-light: lighten($gray-base, 46.7%); // #777
+$gray-lighter: lighten($gray-base, 93.5%); // #eee
+$gray-dark: #2b2e33;
+$gray-darker: #202226;
+
+$print-gray: darken($gray-lighter, 25%);
+$print-font-size: 12pt;
+
+$brand-primary: #f05e22;
+$brand-secondary: #444;
+$brand-text: #b52900;
+$brand-success: #6dbb52;
+$brand-info: #5bc0de;
+$brand-warning: #ffa46d;
+$brand-danger: red;
+$white: #ffffff;
+$black: #000000;
+
+//== topbar
+$top-bar-height: 50px;
+
+$brandColors: (
+	//
+	default: $white,
+	primary: $brand-primary,
+	secondary: $brand-secondary,
+	success: $brand-success,
+	info: $brand-info,
+	warning: $brand-warning,
+	danger: $brand-danger //
+);
+
+$brand-primary-dark: darken($brand-primary, 10%);
+$brand-secondary-dark: darken($brand-secondary, 10%);
+
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg: #fff;
+//** Global text color on `<body>`.
+$text-color: $gray-dark;
+
+//** Global textual link color.
+$link-color: $brand-primary;
+//** Link hover color set via `darken()` function.
+$link-hover-color: darken($link-color, 15%);
+//** Link hover decoration.
+$link-hover-decoration: underline;
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+// $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+// $font-family-serif:       Georgia, "Times New Roman", Times, serif;
+// Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+// $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+// $font-family-base:        $font-family-sans-serif;
+
+$font-stack: 'Lato',
+	'Helvetica',
+	sans-serif;
+$font-size-base: 16px;
+$font-size-large: ceil(($font-size-base * 1.25)); // ~20px
+$font-size-small: ceil(($font-size-base * 0.81)); // ~13px
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base: 1.428; // 1.428571429 !default; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+$line-height-computed: floor(($font-size-base * $line-height-base)); // ~20px
+
+//** By default, this inherits from the `<body>`.
+// $headings-font-family:    inherit !default;
+// $headings-font-weight:    500 !default;
+// $headings-line-height:    1.1 !default;
+// $headings-color:          inherit !default;
+$headings-color: $gray;
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$padding-xs-vertical: 1px;
+$padding-xs-horizontal: 5px;
+
+$padding-small-vertical: 3px; // 5 !default
+$padding-small-horizontal: 10px;
+
+$padding-base-vertical: 12px;
+$padding-base-horizontal: 16px;
+
+$padding-large-vertical: 10px;
+$padding-large-horizontal: 16px;
+
+$line-height-large: 1.3333333; // extra decimals for Win 8.1 Chrome
+$line-height-small: 1.3; // 1.5 !default
+
+$border-radius-small: 2px;
+$border-radius-base: 3px;
+$border-radius-large: 4px;
+
+$input-color: $gray-light;
+
+// This has no effect on `<select>`s in some browsers, due to the limited style customization of `<select>`s in CSS.
+$input-border-radius: 2px;
+//** Large `.form-control` border radius
+$input-border-radius-large: $border-radius-large;
+//** Small `.form-control` border radius
+$input-border-radius-small: $border-radius-small;
+
+//** Default `.form-control` height
+// $input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2);
+//** Large `.form-control` height
+// $input-height-large:             (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
+//** Small `.form-control` height
+// $input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+
+
+// Extra small screen / phone
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+$screen-phone: $screen-xs-min;
+
+// Small screen / tablet
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+$screen-tablet: $screen-sm-min;
+
+// Medium screen / desktop
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+$screen-desktop: $screen-md-min;
+
+// Large screen / wide desktop
+$screen-lg: 1200px;
+$screen-lg-min: $screen-lg;
+$screen-lg-desktop: $screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max: (
+	$screen-sm-min - 1
+);
+$screen-sm-max: (
+	$screen-md-min - 1
+);
+$screen-md-max: (
+	$screen-lg-min - 1
+);
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+$grid-columns: 12;
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width: 20px;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint: $screen-sm-min;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: (
+	$grid-float-breakpoint - 1
+);
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+$container-phone: (
+	320px + $grid-gutter-width
+);
+$container-xs: $container-phone;
+
+// Small screen / tablet
+$container-tablet: (
+	750px + $grid-gutter-width
+);
+//** For `$screen-sm-min` and up.
+$container-sm: $container-tablet;
+
+// Medium screen / desktop
+$container-desktop: (
+	960px + $grid-gutter-width
+);
+//** For `$screen-md-min` and up.
+$container-md: $container-desktop;
+
+// Large screen / wide desktop
+$container-large-desktop: (
+	1140px + $grid-gutter-width
+);
+//** For `$screen-lg-min` and up.
+$container-lg: $container-large-desktop;
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+//** Padding for `<th>`s and `<td>`s.
+$table-cell-padding: 8px !default;
+//** Padding for cells in `.table-condensed`.
+$table-condensed-cell-padding: 5px !default;
+
+//** Default background color used for all tables.
+$table-bg: transparent !default;
+//** Background color used for `.table-striped`.
+$table-bg-accent: #f9f9f9 !default;
+//** Background color used for `.table-hover`.
+$table-bg-hover: #f5f5f5 !default;
+$table-bg-active: $table-bg-hover  !default;
+
+//** Border color for table and cell borders.
+$table-border-color: #ddd !default;
+
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+$state-danger-text:              #d0110d;
+
+
+
+$xs-width: 320px; //this should be your default css
+$sm-width: 480px;
+$md-width: 768px;
+$lg-width: 992px;
+$xl-width: 1200px;
+
+
+@mixin sm {
+	@media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media (min-width: #{$lg-width}) and (max-width: #{$xl-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin xl {
+	@media (min-width: #{$xl-width}) {
+		@content;
+	}
+}
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+$container-tablet: (
+	710px + $grid-gutter-width
+);
+//** For `$screen-sm-min` and up.
+$container-sm: $container-tablet;
+
+// Medium screen / desktop
+// $container-desktop:            (940px + $grid-gutter-width);
+//** For `$screen-md-min` and up.
+// $container-md:                 $container-desktop;
+
+// Large screen / wide desktop
+// $container-large-desktop:      (1140px + $grid-gutter-width);
+//** For `$screen-lg-min` and up.
+// $container-lg:                 $container-large-desktop;
+
+//** Default `.form-control` height
+$input-height-base: (
+	$line-height-computed + ($padding-base-vertical * 2) + 2
+);
+
+$navbar-default-color: $white;
+$navbar-default-bg: $brand-secondary;
+$navbar-default-border: darken($navbar-default-bg, 6.5%);
+
+//$navbar-inverse-link-color:       #5AADBB;
+//$navbar-default-toggle-hover-bg : #4c738b;
+//$navbar-margin-bottom:             0;
+//
+//$navbar-inverse-color:            lighten($gray-light, 15%);
+//$navbar-inverse-link-color:       $white;
+//$navbar-inverse-bg:               $brand-primary;
+
+//== Tabs
+//
+$nav-tabs-border-color: $brand-secondary;
+
+$nav-tabs-link-hover-border-color: $gray-lighter;
+
+$nav-tabs-active-link-hover-bg: $body-bg;
+$nav-tabs-active-link-hover-color: $gray;
+$nav-tabs-active-link-hover-border-color: #ddd;
+
+$nav-tabs-justified-link-border-color: #ddd;
+$nav-tabs-justified-active-link-border-color: $body-bg;
+
+$text-muted: lighten($gray-light, 5%);
+
+//== Panels
+//
+//##
+
+// $panel-bg:                    #fff !default;
+$panel-body-padding: 10px 15px;
+$panel-heading-padding: 10px 15px;
+// $panel-footer-padding:        $panel-heading-padding !default;
+// $panel-border-radius:         $border-radius-base !default;
+
+// //** Border color for elements within panels
+// $panel-inner-border:          #ddd !default;
+// $panel-footer-bg:             #f5f5f5 !default;
+
+$panel-default-text: $gray-dark;
+// $panel-default-border:        #ddd !default;
+$panel-default-heading-bg: $gray-lighter;
+
+// $panel-primary-text:          #fff !default;
+// $panel-primary-border:        $brand-primary !default;
+// $panel-primary-heading-bg:    $brand-primary !default;
+
+// $panel-success-text:          $state-success-text !default;
+// $panel-success-border:        $state-success-border !default;
+// $panel-success-heading-bg:    $state-success-bg !default;
+
+// $panel-info-text:             $state-info-text !default;
+// $panel-info-border:           $state-info-border !default;
+// $panel-info-heading-bg:       $state-info-bg !default;
+
+// $panel-warning-text:          $state-warning-text !default;
+// $panel-warning-border:        $state-warning-border !default;
+// $panel-warning-heading-bg:    $state-warning-bg !default;
+
+// $panel-danger-text:           $state-danger-text !default;
+// $panel-danger-border:         $state-danger-border !default;
+// $panel-danger-heading-bg:     $state-danger-bg !default;
+
+$grid-gutter-width: 10px;
+
+//== Thumbnails
+//
+//** Padding around the thumbnail image
+// $thumbnail-padding:           4px !default;
+//** Thumbnail background color
+$thumbnail-bg: transparent;
+//** Thumbnail border color
+$thumbnail-border: transparent;
+//** Thumbnail border radius
+// $thumbnail-border-radius:     $border-radius-base !default;
+
+//** Custom text color for thumbnail captions
+// $thumbnail-caption-color:     $text-color !default;
+//** Padding around the thumbnail caption
+// $thumbnail-caption-padding:   9px !default;
+
+// Forms
+// New Colors Vars (not bootstrap)
+$draft: #ff843a;
+// $created: #5fc8da;
+$created: $draft;
+$presented: #5698e2;
+$emailed: $presented;
+$viewed: $presented;
+$accepted: #649c51;
+$rejected: #dc5a5d;
+$lost: $gray-light;
+
+//== Progress bars =============================================================
+//** Background color of the whole progress component
+$progress-bg: #f5f5f5;
+//** Progress bar text color
+$progress-bar-color: #fff;
+//** Variable for setting rounded corners on progress bar.
+$progress-border-radius: $border-radius-base;
+//** Default progress bar color
+$progress-bar-bg: $brand-primary;
+//** Success progress bar color
+$progress-bar-success-bg: $brand-success;
+//** Warning progress bar color
+$progress-bar-warning-bg: $brand-warning;
+//** Danger progress bar color
+$progress-bar-danger-bg: $brand-danger;
+//** Info progress bar color
+$progress-bar-info-bg: $brand-info;
+
+//== Modals ====================================================================
+//** Padding applied to the modal body
+$modal-inner-padding: 10px;
+
+//** Padding applied to the modal title
+$modal-title-padding: 15px;
+
+//** Modal title line-height
+$modal-title-line-height: $line-height-base;
+
+//** Background color of modal content area
+$modal-content-bg: #fff;
+//** Modal content border color
+$modal-content-border-color: #e2e2e2;
+//** Modal content border color **for IE8**
+// $modal-content-fallback-border-color:          #999;
+
+//** Modal backdrop background color
+$modal-backdrop-bg: #fff;
+//** Modal backdrop opacity
+$modal-backdrop-opacity: 0.7;
+//** Modal header border color
+$modal-header-border-color: transparent;
+//** Modal footer border color
+$modal-footer-border-color: $modal-header-border-color;
+
+$modal-lg: 95%;
+$modal-md: 75%;
+$modal-sm: 65%;
+$modal-xs: 60%;
+
+// nav sidebars office, app
+$sidebar-width: 240px;
+
+// todo: remove after office migrated
+$brand-office: #319db5;
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+	//
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px //
+);
+
+$spacer: 1rem;
+$spacers: (
+	//
+	0: 0,
+	1: math.div($spacer, 0.25),
+	2: math.div($spacer, 0.5),
+	3: $spacer,
+	4: $spacer * 1.5,
+	5: $spacer * 3,
+	//
+);
+
+// bs4
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret: true;
+$enable-rounded: true;
+$enable-shadows: false;
+$enable-gradients: false;
+$enable-transitions: true;
+$enable-reduced-motion: true;
+$enable-smooth-scroll: true;
+$enable-grid-classes: true;
+$enable-button-pointers: true;
+$enable-rfs: true;
+$enable-validation-icons: true;
+$enable-negative-margins: false;
+$enable-deprecation-messages: true;
+$enable-important-utilities: true;
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$border-width: 1px;
+$border-widths: (
+	//
+	0: 0,
+	1: 1px,
+	2: 2px,
+	3: 3px,
+	4: 4px,
+	5: 5px //
+);
+
+$border-color: $gray-light;
+
+// $border-radius:               .25rem;
+// $border-radius-sm:            .2rem;
+// $border-radius-lg:            .3rem;
+// $border-radius-pill:          50rem;
+
+// $box-shadow:                  0 .5rem 1rem rgba($black, .15);
+// $box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
+// $box-shadow-lg:               0 1rem 3rem rgba($black, .175);
+// $box-shadow-inset:            inset 0 1px 2px rgba($black, .075);
+
+$component-active-color: $white;
+$component-active-bg: $brand-primary;
+
+// $caret-width:                 .3em;
+// $caret-vertical-align:        $caret-width * .85;
+// $caret-spacing:               $caret-width * .85;
+
+// $transition-base:             all .2s ease-in-out;
+// $transition-fade:             opacity .15s linear;
+// $transition-collapse:         height .35s ease;
+
+// stylelint-disable function-disallowed-list
+// scss-docs-start aspect-ratios
+$aspect-ratios: (
+	//
+	"1x1": 100%,
+	"4x3": calc(math.div(3, 4) * 100%),
+	"16x9": calc(math.div(9, 16) * 100%),
+	"21x9": calc(math.div(9, 21) * 100%) //
+	) !default;
+// scss-docs-end aspect-ratios
+// stylelint-enable function-disallowed-list
+
+
+// Cards
+
+$card-spacer-y: $spacer;
+$card-spacer-x: $spacer;
+$card-title-spacer-y: math.div($spacer, 2
+);
+$card-border-width: $border-width;
+$card-border-radius: $border-radius-base;
+$card-border-color: rgba($black, .125);
+$card-inner-border-radius: $card-border-radius - $card-border-width;
+$card-cap-padding-y: math.div($card-spacer-y, 2);
+$card-cap-padding-x: $card-spacer-x;
+$card-cap-bg: rgba($black, .03);
+$card-cap-color: null;
+$card-height: null;
+$card-color: null;
+$card-bg: $white;
+
+$card-img-overlay-padding: $spacer;
+
+$card-group-margin: math.div($grid-gutter-width, 2);
+
+// Navs
+
+// $nav-link-padding-y:                .5rem;
+// $nav-link-padding-x:                1rem;
+// $nav-link-font-size:                null;
+// $nav-link-font-weight:              null;
+// $nav-link-color:                    null;
+// $nav-link-hover-color:              null;
+// $nav-link-transition:               color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+// $nav-link-disabled-color:           $gray-600;
+
+// $nav-tabs-border-color:             $gray-300;
+// $nav-tabs-border-width:             $border-width;
+// $nav-tabs-border-radius:            $border-radius;
+// $nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color;
+// $nav-tabs-link-active-color:        $gray-700;
+$nav-tabs-link-active-bg: $body-bg;
+// $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg;
+
+$nav-pills-border-radius: $border-radius-base;
+$nav-pills-link-active-color: $component-active-color;
+$nav-pills-link-active-bg: $component-active-bg;
