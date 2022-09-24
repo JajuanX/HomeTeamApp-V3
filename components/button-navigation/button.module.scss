@@ -1,0 +1,18 @@
+@import '../../styles/_variables.scss';
+
+.primary, .secondary {
+	border-radius: 12px;
+	padding: 7px 15px;
+	width: 100%;
+}
+
+.primary {
+	background-color: $brand-primary;
+	color: $white;
+}
+
+.secondary {
+	border: 1px solid $brand-primary;
+	background-color: $white;
+	color: $brand-primary;
+}

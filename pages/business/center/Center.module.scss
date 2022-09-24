@@ -1,5 +1,13 @@
 .businessCenter {
 	padding: 60px 10px 120px 10px;
+	display: flex;
+	flex-direction: column;
+
+	.imageContainer {
+		position: relative;
+		height: 200px;
+		margin-top: 16px;
+	}
 
 	h1 {
 		color: #b52900;
@@ -8,30 +16,8 @@
 		text-align: center;
 	}
 
-	.userLoggedIn {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.userCreate, .userNotLoggedIn, .userEdit {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-
-		p {
-			margin: 24px 0;
-			color: rgb(47, 47, 47);
-			text-align: center;
-		}
-
-		button {
-			margin: 0 auto;
-			background-color: #ef5d30;
-			width: 200px;
-			padding: 5px 10px;
-			border-radius: 5px;
-			color: white;
-		}
+	.buttonsContainer {
+		margin-top: 24px;
 	}
 
 }

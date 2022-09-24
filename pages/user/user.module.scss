@@ -1,5 +1,7 @@
+@import '../../styles/_variables.scss';
+
 .userProfile {
-	padding: 60px 24px;
+	padding: 80px 24px;
 
 	.userActions {
 		display: flex;
@@ -7,6 +9,56 @@
 		align-items: center;
 		img {
 			border-radius: 500px;
+		}
+
+		.userName {
+			font-weight: 600;
+			font-size: 1.25rem;
+		}
+	}
+
+	.invitesContainer {
+		display: flex;
+		flex-direction: column;
+		background-color: #444;
+		border-radius: 12px;
+		padding: 8px 12px;
+		margin: 24px 0;
+		color: white;
+
+		h1 {
+			font-weight: 500;
+			border-bottom: 1px solid white;
+		}
+	}
+
+	.links {
+		margin-top: 16px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		button {
+			margin-top: 16px;
+		}
+	}
+
+	form {
+		background-color: #444;
+		padding: 8px 12px;
+		margin: 24px 0;
+		color: white;
+		border-radius: 12px;
+		input {
+			color: black;
+		}
+		button {
+			width: 100%;
+			background-color: white;
+			border-radius: 8px;
+			color: $brand-primary;
+			margin: 8px 0;
+			padding: 3px 0px;
 		}
 	}
 
