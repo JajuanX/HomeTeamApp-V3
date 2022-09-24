@@ -1,51 +1,43 @@
-import React, {useContext} from 'react';
-import Link from 'next/link';
+import React, {useContext, useRef, useEffect} from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import UserContext from '../../../lib/context';
 import IndexLayout from '../../../layouts/IndexLayout';
 import styles from './Center.module.scss';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-
+import Button from '../../../components/button-navigation/Button';
 
 function Business() {
 	const {user} = useContext(UserContext);
+	const isFirstRender = useRef(true);
+	const router = useRouter();
 	console.log(user);
 
+	useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false // toggle flag after first render/mounting
+			return;
+		}
+		if (!user) {
+			router.push('/')
+		}
+	}, [user, router]);
 
 	return (
 		<div className={styles.businessCenter}>
-			<h1>Business Center</h1>
-			{user?.userBusinesses?.length > 0 && 
-				<div className={styles.userEdit}>
-					<div>
-						Edit
-					</div>
-					<Link href={`/business/edit/${user.userBusinesses[0]}`}>
-						<button type='button'>Edit Business</button>
-					</Link>
-				</div> 
-			}
-
-			{user?.userBusinesses?.length === 0 &&
-				<div className={styles.userCreate}>
-					<p>
-							Make your business apart of the HomeTeam.
-					</p> 
-					<Link href='/business/create'>
-						<button type='button'>Create Business</button>
-					</Link>
-				</div>
-
-			}
-			{!user &&
-				<div className={styles.userNotLoggedIn}>
-					<p>
-						Take the next step to become apart of The HomeTeam. Members can create their own business profile, 
-						gain access to cool features, and much more. Join us today!
-					</p>
-					<Link href='/login'>
-						<button type='button'>Sign Up</button>
-					</Link>
-				</div>}
+			<h1>{user?.business?.name}</h1>
+			<div className={styles.imageContainer}>
+				{user.business?.cover_photo?.url && <Image
+					layout="fill"
+					objectFit="contain"
+					src={user?.business?.cover_photo?.url}
+					alt="#"
+				/>}
+			</div>
+			<div className={styles.buttonsContainer}>
+				{user?.business && 
+						<Button text='Edit Business' pageUrl={`/business/edit/${user?.business?.id}`} primary />
+				}
+			</div>
 		</div>
 	)
 }

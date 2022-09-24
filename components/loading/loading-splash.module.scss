@@ -1,27 +1,32 @@
 .loadingSplash {
-	margin: auto 0;
-	padding-top: 60px;
+	padding-top: 20vh;
 	height: 100vh;
 	width: 100vw;
-	background-color: rgba(255, 255, 255, 0.844);
+	background-color: rgba(255, 255, 255);
 	position: absolute;
 	top: 0;
 	z-index: 1001;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	align-items: center;
+	padding-bottom: 50px;
+
+	.logoContainer {
+		margin-top: 100px;
+	}
 
 	.messageContainer {
-		margin-top: 16px;
-		display: flex;
-		flex-direction: row;
+		display: grid;
+		place-items: center;
 		color: #F05F24;
 		background-color: white;
-		border: 1px solid #F05F24;
-		border-radius: 15px;
-		padding: 10px 20px;
+		h3 {
+			font-size: .5rem;
+			color: #444;
+		}
 		h1 {
-			margin-left: 10px;
+			font-size: 1rem;
 		}
 	}
 }
