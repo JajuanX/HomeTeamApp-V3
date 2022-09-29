@@ -1,21 +1,26 @@
-.businessTileDisplay {
-	min-height: 125px;
-	width: 100%;
-
-	.imageContainer {
-		img {
-			border-radius: 15px;
+button {
+	.businessTileDisplay {
+		min-height: 125px;
+		width: 100%;
+	
+		.imageContainer {
+			img {
+				border-radius: 15px;
+			}
 		}
-	}
-	.infoContainer {
-		.name {
-			font-size: .85rem;
-			font-weight: 500;
-			color: #444;
-		}
+		.infoContainer {
+			.name {
+				font-size: .85rem;
+				font-weight: 500;
+				color: #444;
+				text-align: left;
+			}
+	
+			.category {
+				font-size: .70rem;
+				text-align: left;
 
-		.category {
-			font-size: .70rem;
+			}
 		}
 	}
 }

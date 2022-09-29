@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useRef } from 'react';
 // import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import SimpleReactValidator from 'simple-react-validator';
-import UserContext from '../../../lib/context';
+import Context from '../../../lib/context';
 import styles from './accept.module.scss';
 import IndexLayout from '../../../layouts/IndexLayout';
 
 export default function Invite() {
-	const {user, setUserEmail, userEmail} = useContext(UserContext);
+	const {user, setUserEmail, userEmail} = useContext(Context);
 	const router = useRouter();
 	const isFirstRender = useRef(true);
 	const validator = useRef(new SimpleReactValidator());

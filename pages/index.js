@@ -3,12 +3,12 @@ import { Waypoint } from 'react-waypoint';
 import toast, { Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import Masonry from 'react-masonry-css'
-import useIsIOS from "../../lib/useIsIOS";
-import BusinessTileDisplay from '../../components/business-card/BusinessCard';
+import useIsIOS from "../lib/useIsIOS";
+import BusinessTileDisplay from '../components/business-card/BusinessCard';
 import styles from './Index.module.scss';
-import Location from '../../public/assets/location.svg';
-import IndexLayout from '../../layouts/IndexLayout';
-import LoadingSplash from '../../components/loading/LoadingSplash'
+import Location from '../public/assets/location.svg';
+import IndexLayout from '../layouts/IndexLayout';
+import LoadingSplash from '../components/loading/LoadingSplash'
 
 function Home() {
 	const [businesses, setBusinesses] = useState([]);
@@ -18,7 +18,6 @@ function Home() {
 	const [loadingBusinesses, setLoadingBusinesses] = useState(false);
 	const [lastBusiness, setLastBusiness] = useState([]);
 	const { prompt } = useIsIOS();
-	console.log(prompt);
 
 	useEffect(() => {
 		setLoadingBusinesses(true)
@@ -95,7 +94,7 @@ function Home() {
 	};
 
 	return (
-		<div className={styles.homeContainer} data-testid='home-page'>
+		<main className={styles.homeContainer} data-testid='home-page'>
 			<Toaster position='top-middle' />
 			{ loadingNearby && LoadingSplash('Loading Nearby Location')}
 			{ loadingBusinesses && LoadingSplash('Loading Businesses')}
@@ -124,11 +123,12 @@ function Home() {
 							columnClassName="my-masonry-grid_column"
 						>
 							{
-								businesses?.map((business) => (
+								businesses?.map((business, index) => (
 									<BusinessTileDisplay
 										key={business.id}
 										id={business.id}
 										business={business}
+										index={index}
 									/>
 								))
 							}
@@ -157,7 +157,7 @@ function Home() {
 					onEnter={nextPage}
 				/>
 			</div>
-		</div>
+		</main>
 	)
 }
 

@@ -1,56 +1,52 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from 'next/router';
 import styles from './creator-menu.module.scss';
 import check from '../../../public/assets/check.svg'
 
 
-function CreatorMenu({onOutsideClick}) {
+function CreatorMenu({closeMenu}) {
 	const router = useRouter();
+
+	const navigateTo = (route) => {
+		closeMenu()
+		router.push(route)
+	}
 
 	return (
 		<div name="creator_menu" className={styles.creatorMenu}>
-			<Link href='/home'>
+			<button type='button' aria-label='navigate to home' onClick={() => navigateTo('/')}>
 				<div className={styles.navigationBlock}>
-					<button type="button" onClick={onOutsideClick}>
-						<span>Home</span>
-					</button>
-					{ router.pathname === '/home' && <div className={styles.imageContainer}>
+					<span>Home</span>
+					{ router.pathname === '/' && <div className={styles.imageContainer}>
 						<Image src={check} objectFit='contain' alt='profile' />
 					</div>}
 				</div>
-			</Link>
-			<Link href='/user'>
+			</button>
+			<button type='button' aria-label='navigate to profile' onClick={() => navigateTo('/user')}>
 				<div className={styles.navigationBlock}>
-					<button type="button" onClick={onOutsideClick}>
-						<span>Profile</span>
-					</button>
+					<span>Profile</span>
 					{ router.pathname === '/user' && <div className={styles.imageContainer}>
 						<Image src={check} objectFit='contain' alt='profile' />
 					</div>}
 				</div>
-			</Link>
-			<Link href='/map'>
+			</button>
+			<button type='button' aria-label='navigate to maps' onClick={() => navigateTo('/map')}>
 				<div className={styles.navigationBlock}>
-					<button type="button" onClick={onOutsideClick}>
-						<span>Map</span>
-					</button>
+					<span>Map</span>
 					{ router.pathname === '/map' && <div className={styles.imageContainer}>
 						<Image src={check} objectFit='contain' alt='profile' />
 					</div>}
 				</div>
-			</Link>
-			<Link href='/business/center'>
+			</button>
+			<button type='button' aria-label='navigate my business center' onClick={() => navigateTo('/business/center')} >
 				<div className={styles.navigationBlock}>
-					<button type="button" onClick={onOutsideClick}>
-						<span>My Business</span>
-					</button>
+					<span>My Business</span>
 					{ router.pathname === '/business/center' && <div className={styles.imageContainer}>
 						<Image src={check} objectFit='contain' alt='profile' />
 					</div>}
 				</div>
-			</Link>
+			</button>
 		</div>
 	)
 }

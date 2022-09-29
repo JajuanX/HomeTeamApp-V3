@@ -15,6 +15,7 @@
 		display: flex;
 		flex-direction: column;
 		height: 45px;
+		align-items: center;
 		.iconLabel {
 			font-size: 10px;
 			color: #F05E24;
@@ -58,12 +59,22 @@
 					font-size: .85rem;
 				}
 		
-				.triangle {
+				.flipTriangle {
 					width: 0; 
 					height: 0; 
 					border-left: 5px solid transparent;
 					border-right: 5px solid transparent;
 					border-top: 8px solid rgb(255, 255, 255);
+					margin-left: 10px;
+					margin-top: 3px;
+				}
+
+				.triangle {
+					width: 0; 
+					height: 0; 
+					border-left: 5px solid transparent;
+					border-right: 5px solid transparent;
+					border-bottom: 8px solid rgb(255, 255, 255);
 					margin-left: 10px;
 					margin-top: 3px;
 				}

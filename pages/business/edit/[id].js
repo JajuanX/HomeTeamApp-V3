@@ -10,7 +10,7 @@ import q from 'q';
 import Image from 'next/image';
 import styles from './Edit.module.scss';
 import useEditBusinessForm from '../../../lib/useEditBusinessForm';
-import UserContext from '../../../lib/context';
+import Context from '../../../lib/context';
 import IndexLayout from '../../../layouts/IndexLayout';
 
 function EditBusiness() {
@@ -23,7 +23,7 @@ function EditBusiness() {
 		handle_inputChange
 	} = useEditBusinessForm();
 
-	const { user } = useContext(UserContext);
+	const { user } = useContext(Context);
 	const router = useRouter();
 	const { id } = router.query;
 

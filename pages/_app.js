@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import Script from 'next/script';
 import Head from 'next/head';
-import UserContext from '../lib/context';
+import Context from '../lib/context';
 import useUserData from '../lib/userHooks';
 import IndexLayout from '../layouts/IndexLayout';
 
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
 				src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY}&libraries=places`}
 			/>
 
-			<UserContext.Provider value={userData}>
+			<Context.Provider value={userData}>
 				{Component.PageLayout ?
 					<IndexLayout> 
 						<Component {...pageProps} />
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
 					:
 					<Component {...pageProps} />
 				}
-			</UserContext.Provider>
+			</Context.Provider>
 		</>
 	)
 }

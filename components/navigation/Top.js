@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from './top.module.scss';
@@ -25,15 +24,15 @@ function Bottom() {
 		return pathName.toUpperCase();
 	}
 	return (
-		<div className={styles.topContainer}>
-			{ router.pathname === '/home' || router.pathname === '/' ?
-				<Link href="/">
+		<nav className={styles.topContainer}>
+			{ router.pathname === '/' ?
+				<button type='button' aria-label='Home' onClick={() => router.push('/')}>
 					<div style={{width: '150px', position: 'relative', display: 'grid', placeItems: 'center'}}>
 						<Image src={HomeTeamLogo}/>
 					</div>
-				</Link>:
+				</button>:
 				<div className={styles.container}>
-					<button type='button' onClick={() => router.back()}>
+					<button type='button' aria-label='Back' onClick={() => router.back()}>
 						<div style={{ width: '20px', position: 'relative', display: 'grid', placeItems: 'center'}}>
 							<Image src={Backbutton}/>
 						</div>
@@ -41,7 +40,7 @@ function Bottom() {
 					<span>{cleanPathName(router.pathname)}</span>
 				</div>
 			}
-		</div>
+		</nav>
 	)	
 }
 
