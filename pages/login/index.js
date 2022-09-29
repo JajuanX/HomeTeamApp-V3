@@ -6,7 +6,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import { signInWithGoogle, signInWithFacebook } from '../../lib/firebase';
 import FacebookLogo from '../../public/assets/facebookLogo.png';
 import GoogleLogo from '../../public/assets/googleLogo.png';
-import UserContext from '../../lib/context';
+import Context from '../../lib/context';
 import styles from './Login.module.scss';
 
 export default function Login() {
@@ -15,7 +15,7 @@ export default function Login() {
 		setUserPassword,
 		userEmail,
 		signUp,
-		userPassword} = useContext(UserContext);
+		userPassword} = useContext(Context);
 	const router = useRouter();
 	const isFirstRender = useRef(true);
 	const validator = useRef(new SimpleReactValidator());

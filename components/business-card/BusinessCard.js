@@ -1,13 +1,18 @@
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styles from './business-card.module.scss';
 import { capitalizeFirstLetter } from '../../utils/utilities';
 
-function BusinessTileDisplay({business}) {
+function BusinessTileDisplay({business, index}) {
+	const router = useRouter();
+
 	return (
-		<Link href={`/business/${business.id}`} passHref>
-			<div className={styles.businessTileDisplay} key={business.id}>
+		<button type='button'
+			aria-label={`Navigate to business ${business.name}`}
+			onClick={() => router.push(`/business/${business.id}`)}
+		>
+			<div aria-label={`Link to business ${business.name}`} tabIndex={index} className={styles.businessTileDisplay} key={business.id}>
 				<div className={styles.imageContainer}>
 					{ business?.cover_photo?.url &&
 						<Image 
@@ -26,7 +31,7 @@ function BusinessTileDisplay({business}) {
 					</div>
 				</div>
 			</div>
-		</Link>
+		</button>
 	)
 }
 

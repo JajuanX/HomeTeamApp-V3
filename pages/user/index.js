@@ -11,7 +11,7 @@ import IndexLayout from '../../layouts/IndexLayout';
 import Button from '../../components/button-navigation/Button';
 
 export default function UserProfile() {
-	const {user, handleUploadChange, setInviteeEmail, submitInvite, inviteeEmail,inviteCode, setInviteCode, acceptInvite} = useContext(UserContext);
+	const {user, handleUploadChange, setInviteeEmail, submitInvite, inviteeEmail, inviteCode, setInviteCode, acceptInvite} = useContext(UserContext);
 	const isFirstRender = useRef(true);
 	const router = useRouter();
 	const validator = useRef(new SimpleReactValidator());
@@ -61,7 +61,7 @@ export default function UserProfile() {
 	}
 
 	return (
-		<div className={styles.userProfile}>
+		<main className={styles.userProfile}>
 			<Toaster 
 				position='top-center'
 			/>
@@ -89,9 +89,11 @@ export default function UserProfile() {
 			</div>
 			<div className={styles.links}>
 				{user?.isOwner && <Button text='Business Center' pageUrl='business/center' primary />}
+				<Button text='Subscribe To Create Business' pageUrl="/subscribe" primary/>
+
 			</div>
 			{user?.isOwner && 
-			<form className={styles.signUpForm} onSubmit={(e) => submitInvitation(e)}>
+			<form className={styles.signUpForm}>
 				<div className={styles.inputsContainers}>
 					<div className={styles.inputContainer}>
 						<label className="business-label" htmlFor="email">
@@ -113,7 +115,7 @@ export default function UserProfile() {
 						)}
 					</div>
 
-					<button type='submit' className={styles.button}>
+					<button type='button' onClick={(e) => submitInvitation(e)} className={styles.button}>
 						Submit
 					</button>
 				</div>
@@ -158,7 +160,7 @@ export default function UserProfile() {
 					</div>
 				</div>
 			}
-		</div>
+		</main>
 	)
 }
 

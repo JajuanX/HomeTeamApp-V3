@@ -1,21 +1,21 @@
 import React, {useContext, useState} from 'react'
-import Link from 'next/link';
 import Image from 'next/image';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useRouter } from 'next/router';
 import styles from './bottom.module.scss';
 import HomeTeamLogo from '../../public/assets/homeIcon.svg';
-import UserContext from '../../lib/context';
+import Context from '../../lib/context';
 import CreatorMenu from './creator-menu/CreatorMenu';
 import { capitalizeFirstLetter } from '../../utils/utilities';
 
 // Replace words with Icons hat represent each link
 function Bottom() {
-	const { user } = useContext(UserContext);
+	const { user } = useContext(Context);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const router = useRouter();
 
 	const closeMenu = () => {
+		console.log('run');
 		setIsMenuOpen(false);
 	}
 
@@ -25,6 +25,7 @@ function Bottom() {
 
 	const cleanPathName = (path) => {
 		const splitPath = path.split('/');
+		console.log(splitPath);
 		if(splitPath.length === 3) {
 			if(splitPath[2] === 'create') return 'Create';
 			if(splitPath[2] === 'edit') return 'Edit';
@@ -33,50 +34,49 @@ function Bottom() {
 		}
 		let pathName = capitalizeFirstLetter(splitPath[1]);
 		if(pathName === 'User') pathName = 'Profile';
+		if(pathName === '') pathName = 'Home';
 		return pathName;
 	}
 	return (
-		<div className={styles.bottomContainer}>
+		<nav className={styles.bottomContainer}>
 			<div className={styles.left}>
-				<Link href="/home">
-					<div className={styles.iconContainer}>
-						<div style={{width: '35px', height: '35px', position: 'relative'}}>
-							<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
-						</div>
-						<span className={styles.iconLabel}> Home</span>
+				<button className={styles.iconContainer} aria-label='Home' type='button' onClick={() => router.push('/')}>
+					<div style={{width: '35px', height: '35px', position: 'relative'}}>
+						<Image as="image" layout='fill' objectFit='contain' src={HomeTeamLogo} alt="hometeam" />
 					</div>
-				</Link>
+					<span className={styles.iconLabel}> Home</span>
+				</button>
 				<OutsideClickHandler onOutsideClick={() => closeMenu()}>
 					<div className={styles.dropdownContainer}>
 						<button 
+							aria-label='Drop down menu'
 							type='button' 
 							onClick={() => openMenu()}
 						>
 							<div className={styles.dropDown}>
 								<span>{cleanPathName(router.pathname)}</span>
-								<div className={styles.triangle}/>
+								<div className={isMenuOpen ? styles.triangle : styles.flipTriangle}/>
 							</div>
 						</button>
-						{isMenuOpen && 
-								<CreatorMenu onOutsideClick={() => closeMenu()}/>
+						{isMenuOpen ? 
+							<CreatorMenu closeMenu={closeMenu}/>
+							: null
 						}
 					</div>
 				</OutsideClickHandler>
 			</div>
 			<div className={styles.profilePicContainer}>
 				{user?.photoURL ?
-					<Link href="/user">
-						<a href='foo'>
-							<Image height={40} width={40} className="rounded-full" src={user && user.photoURL} alt="User profile" />
-						</a>
-					</Link>
+					<button type='button' onClick={() => router.push('/user')}>
+						<Image height={40} width={40} className="rounded-full" src={user && user.photoURL} alt="User profile" />
+					</button>
 					: 
-					<Link href="/login">
+					<button type='button' onClick={() => router.push('/login')}>
 						Login
-					</Link>
+					</button>
 				}
 			</div>
-		</div>
+		</nav>
 	)	
 }
 

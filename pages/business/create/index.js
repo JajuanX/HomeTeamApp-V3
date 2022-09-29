@@ -7,7 +7,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import useCreateBusinessForm from '../../../lib/useCreateBusinessForm';
-import UserContext from '../../../lib/context';
+import Context from '../../../lib/context';
 import styles from './Create.module.scss';
 import IndexLayout from '../../../layouts/IndexLayout';
 
@@ -43,7 +43,7 @@ const DAYS_OF_WEEK = [
 ];
 
 function CreateBusiness() {
-	const { user } = useContext(UserContext);
+	const { user } = useContext(Context);
 	const {
 		ready,
 		value,
