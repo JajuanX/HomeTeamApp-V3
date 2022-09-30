@@ -30,7 +30,7 @@ function Business() {
 		<div className={styles.businessCenter}>
 			<h1>{user?.business?.name}</h1>
 			<div className={styles.imageContainer}>
-				{user.business?.cover_photo?.url && <Image
+				{user?.business?.cover_photo?.url && <Image
 					layout="fill"
 					objectFit="contain"
 					src={user?.business?.cover_photo?.url}

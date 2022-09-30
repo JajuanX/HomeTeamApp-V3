@@ -34,7 +34,7 @@ export default function Login() {
 	const logInWithGoogle = () => {
 		signInWithGoogle()
 			.then(() => {
-				router.push('/business/center')
+				router.push('/user')
 			})
 			.catch(() => {
 				toast.error('Login Failed');
@@ -44,7 +44,7 @@ export default function Login() {
 	const logInWithFacebook = () => {
 		signInWithFacebook()
 			.then(() => {
-				router.push('/business/center')
+				router.push('/user')
 			})
 			.catch(error => {
 				if (error) toast.error('Login Failed');
