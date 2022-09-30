@@ -82,7 +82,7 @@ function EditBusiness() {
 			router.push('/login')
 		}
 
-		if (user?.userBusinesses.length === 0) {
+		if (!user?.business) {
 			router.push('/business/create')
 		}
 	}, [user]);
