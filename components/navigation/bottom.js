@@ -59,7 +59,7 @@ function Bottom() {
 							</div>
 						</button>
 						{isMenuOpen ? 
-							<CreatorMenu closeMenu={closeMenu}/>
+							<CreatorMenu closeMenu={closeMenu} user={user}/>
 							: null
 						}
 					</div>

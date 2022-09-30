@@ -71,7 +71,7 @@ export default function UserProfile() {
 						<Image src={user?.photoURL && user?.photoURL} height={150} width={150} alt="User" />
 					}
 				</div>
-				<div className={styles.userName}>{user.displayName}</div>
+				<div className={styles.userName}>{user?.displayName}</div>
 				<div className={styles.buttonContainer}>
 					<button className="signout-button" type="button" onClick={signOut}>Sign Out</button> 
 					<label className='upload-image'>

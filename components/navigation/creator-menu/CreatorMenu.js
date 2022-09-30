@@ -5,7 +5,7 @@ import styles from './creator-menu.module.scss';
 import check from '../../../public/assets/check.svg'
 
 
-function CreatorMenu({closeMenu}) {
+function CreatorMenu({closeMenu, user}) {
 	const router = useRouter();
 
 	const navigateTo = (route) => {
@@ -23,14 +23,14 @@ function CreatorMenu({closeMenu}) {
 					</div>}
 				</div>
 			</button>
-			<button type='button' aria-label='navigate to profile' onClick={() => navigateTo('/user')}>
+			{user && <button type='button' aria-label='navigate to profile' onClick={() => navigateTo('/user')}>
 				<div className={styles.navigationBlock}>
 					<span>Profile</span>
 					{ router.pathname === '/user' && <div className={styles.imageContainer}>
 						<Image src={check} objectFit='contain' alt='profile' />
 					</div>}
 				</div>
-			</button>
+			</button>}
 			<button type='button' aria-label='navigate to maps' onClick={() => navigateTo('/map')}>
 				<div className={styles.navigationBlock}>
 					<span>Map</span>
@@ -39,14 +39,14 @@ function CreatorMenu({closeMenu}) {
 					</div>}
 				</div>
 			</button>
-			<button type='button' aria-label='navigate my business center' onClick={() => navigateTo('/business/center')} >
+			{ user && <button type='button' aria-label='navigate my business center' onClick={() => navigateTo('/business/center')} >
 				<div className={styles.navigationBlock}>
 					<span>My Business</span>
 					{ router.pathname === '/business/center' && <div className={styles.imageContainer}>
 						<Image src={check} objectFit='contain' alt='profile' />
 					</div>}
 				</div>
-			</button>
+			</button>}
 		</div>
 	)
 }
