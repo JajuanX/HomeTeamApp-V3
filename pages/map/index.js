@@ -93,7 +93,7 @@ export default function BusinessMap() {
 	return (
 		<div className={styles.businessMap}>
 			<Toaster position='top-middle' />
-			<div style={{ height: '55vh', width: '100%' }}>
+			<div style={{ height: '50vh', width: '100%' }}>
 				{allBusinesses?.length > 0 && 
 				<GoogleMapReact
 					bootstrapURLKeys={{ 
