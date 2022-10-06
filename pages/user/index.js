@@ -21,6 +21,7 @@ export default function UserProfile() {
 			isFirstRender.current = false // toggle flag after first render/mounting
 			return;
 		}
+		console.log(user);
 		if (!user) {
 			router.push('/')
 		}
@@ -83,56 +84,29 @@ export default function UserProfile() {
 							autoComplete="off"
 							title=""
 						/>
-						<span> - Edit Photo</span>
+						<button type='button'> - Edit Photo</button>
 					</label>
 				</div>
 			</div>
 			<div className={styles.links}>
-				{user?.isOwner && <Button text='Business Center' pageUrl='business/center' primary />}
-				<Button text='Subscribe To Create Business' pageUrl="/subscribe" primary/>
+				{user?.isOwner && user?.isSubscribed && <Button text='Business Center' pageUrl='business/center' primary />}
+				<Button text={user?.isSubscribed ? 'Subscriptions' : 'Subscribe To Create Business'} pageUrl="/subscribe"/>
 
 			</div>
-			{user?.isOwner && 
-			<form className={styles.signUpForm}>
-				<div className={styles.inputsContainers}>
-					<div className={styles.inputContainer}>
-						<label className="business-label" htmlFor="email">
-							Send Invites (Max: 5)
-						</label>
-						<input className='input-single'
-							placeholder="IE: john.doe@gmail.com"
-							type="email"
-							name="email"
-							value={inviteeEmail}
-							onChange={(e) => setInviteeEmail(e.target.value)}
-							autoComplete="off"
-							onBlur={() => validator.current.showMessageFor('email')}
-						/>
-						{validator.current.message(
-							'email',
-							inviteeEmail,
-							'required|email'
-						)}
-					</div>
-
-					<button type='button' onClick={(e) => submitInvitation(e)} className={styles.button}>
-						Submit
-					</button>
-				</div>
-			</form>}
-			{!user?.isOwner &&
-				<form className={styles.signUpForm} onSubmit={(e) => submitAcceptedInvitation(e)}>
+			<div className={styles.formsContainer}>
+				{user?.isOwner && 
+				<form className={styles.signUpForm}>
 					<div className={styles.inputsContainers}>
 						<div className={styles.inputContainer}>
-							<label className="business-label" htmlFor="inviteCode">
-							Accept Invite
+							<label className="business-label" htmlFor="email">
+								Send Invite (Max: 5)
 							</label>
 							<input className='input-single'
-								placeholder="567687-12793-238913-389138"
-								type="inviteCode"
-								name="inviteCode"
-								value={inviteCode}
-								onChange={(e) => setInviteCode(e.target.value)}
+								placeholder="IE: john.doe@gmail.com"
+								type="email"
+								name="email"
+								value={inviteeEmail}
+								onChange={(e) => setInviteeEmail(e.target.value)}
 								autoComplete="off"
 								onBlur={() => validator.current.showMessageFor('email')}
 							/>
@@ -143,23 +117,53 @@ export default function UserProfile() {
 							)}
 						</div>
 
-						<button type='submit' className={styles.button}>
-						Submit
+						<button type='button' onClick={(e) => submitInvitation(e)} className={styles.button}>
+							Submit
 						</button>
 					</div>
 				</form>}
-			{user?.invites?.length > 0 && 
-				<div className={styles.invitesContainer}>
-					<h1>My Invite List</h1>
-					<div className={styles.inviteContainer}>
-						{
-							user?.invites?.length > 0 && user.invites.map(invite => (
-								<p key={invite.email}>{invite.email}</p>
-							))
-						}
+				{!user?.isOwner && user?.isSubscribed &&
+					<form className={styles.signUpForm} onSubmit={(e) => submitAcceptedInvitation(e)}>
+						<div className={styles.inputsContainers}>
+							<div className={styles.inputContainer}>
+								<label className="business-label" htmlFor="inviteCode">
+								Accept Invite
+								</label>
+								<input className='input-single'
+									placeholder="567687-12793-238913-389138"
+									type="inviteCode"
+									name="inviteCode"
+									value={inviteCode}
+									onChange={(e) => setInviteCode(e.target.value)}
+									autoComplete="off"
+									onBlur={() => validator.current.showMessageFor('email')}
+								/>
+								{validator.current.message(
+									'email',
+									inviteeEmail,
+									'required|email'
+								)}
+							</div>
+
+							<button type='submit' className={styles.button}>
+							Submit
+							</button>
+						</div>
+					</form>}
+				{user?.invites?.length > 0 && user?.isSubscribed && 
+					<div className={styles.invitesContainer}>
+						<h1>My Invite List</h1>
+						<div className={styles.inviteContainer}>
+							{
+								user?.invites?.length > 0 && user.invites.map(invite => (
+									<p key={invite.email}>{invite.email}</p>
+								))
+							}
+						</div>
 					</div>
-				</div>
-			}
+				}
+			</div>
+
 		</main>
 	)
 }

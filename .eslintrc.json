@@ -32,7 +32,8 @@
         "label-has-associated-control": "off",
         "jsx-a11y/label-has-associated-control": ["off", {
         "required": {
-        "some": ["nesting", "id"]
+        "some": ["nesting", "id"],
+        "import/extensions": ["error", "always", {"ignorePackages": true} ]
         }
         }],
         "jsx-a11y/label-has-for": ["off", {

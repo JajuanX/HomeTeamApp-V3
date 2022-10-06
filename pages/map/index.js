@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import q from 'q';
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
 import styles from './map.module.scss';
 import IndexLayout from '../../layouts/IndexLayout';
 import LocationPin from '../../components/location-pin/LocationPin';
+import BusinessCategory from '../../components/button-category/ButtonCategory';
+
 
 export default function BusinessMap() {
 	const [allBusinesses, setAllBusinesses] = useState([]);
+	const [selectedCat, setSelectedCat] = useState('')
 
 	const getAllBusinesses = () => {
 		const _deferred = q.defer();
@@ -16,7 +20,6 @@ export default function BusinessMap() {
 		axios
 			.get(`api/businesses/category`)
 			.then(response => {
-				console.log(response.data);
 				_deferred.resolve(response.data);
 			}).catch( error => {
 				_deferred.reject(Object.assign(errMsg, error));
@@ -27,9 +30,9 @@ export default function BusinessMap() {
 	useEffect(() => {
 		getAllBusinesses()
 			.then(response => {
-				console.log(response);
 				setAllBusinesses(response);
 			}).catch( err => {
+				// eslint-disable-next-line no-console
 				console.log(err);
 			})
 	}, [])
@@ -39,21 +42,12 @@ export default function BusinessMap() {
 		'Clothing', 'Printing Services', 'Car Wash', 'Real Estate', 'Coaching', 'Tattoo Artist',
 		'Art', 'Barbershop', 'Mobile Repair' ].sort();
 
-	const businessSelected = (selectedBusiness) => {
-		console.log(selectedBusiness);
-	}
-
 	const location = {
 		address: '4821 sw 23rd st West Park, FL 33023',
 		lat: 25.990009,
 		lng: -80.1922577,
+		mapId: 'fb4e91185440c360',
 	}	
-	
-	const handleApiLoaded = (map, maps) => {
-		// use map and maps objects
-		console.log(map, maps);
-		
-	}
 
 	const getCategory = (_selectedCat) => {
 		const _deferred = q.defer();
@@ -69,37 +63,54 @@ export default function BusinessMap() {
 		return _deferred.promise;
 	}
 
-	const handle_getCategory = (response, _selectedCat) => {
-		console.log(_selectedCat);
+	const handle_getCategory = (response) => {
 		setAllBusinesses(response);
 	}
 
 	const getSelectedCategory = (_selectedCat) => {
-		if (!_selectedCat === 'all') return getAllBusinesses();
+		if (_selectedCat === 'All' || _selectedCat === selectedCat) {
+			return getAllBusinesses().then((response) => {
+				handle_getCategory(response)
+				setSelectedCat('All')
+			});
+		}
+
 		getCategory(_selectedCat)
 			.then((response) => {
-				if(response.length === 0) return;
+				if(response.length === 0){
+					handle_getCategory([{}]);
+					setSelectedCat(_selectedCat);
+					toast.error(`No results for the ${_selectedCat} category `)
+					return;
+				}
 				handle_getCategory(response);
+				setSelectedCat(_selectedCat)
 			})
+			// eslint-disable-next-line no-console
 			.catch( err => console.error(err))
 	}
 
 	return (
 		<div className={styles.businessMap}>
-			<div style={{ height: '70vh', width: '100%' }}>
-				{allBusinesses?.length > 0 && <GoogleMapReact
-					bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY }}
+			<Toaster position='top-middle' />
+			<div style={{ height: '55vh', width: '100%' }}>
+				{allBusinesses?.length > 0 && 
+				<GoogleMapReact
+					bootstrapURLKeys={{ 
+						key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY,
+					}}
+					options={{
+						mapId: 'fb4e91185440c360',
+					}}
 					defaultCenter={location}
 					defaultZoom={12}
 					hoverDistance={40}
-					onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
 					yesIWantToUseGoogleMapApiInternals
 				>
 					{
 						allBusinesses && allBusinesses.map( eachBusiness => (
 							<LocationPin
 								key={eachBusiness?.id}
-								showBusiness={businessSelected}
 								business={eachBusiness}
 								lat={eachBusiness?.coordinates?.latitude}
 								lng={eachBusiness?.coordinates?.longitude}
@@ -109,18 +120,16 @@ export default function BusinessMap() {
 					}
 				</GoogleMapReact>}
 			</div> 
+			<h1>Select Category to Filter</h1>
 			<div className={styles.categoryContainer}>
 				{
 					categories.map((eachCategory) => (
-						<button 
+						<BusinessCategory
 							key={eachCategory}
-							className={styles.category}  
-							type="button" 
-							value={eachCategory} 
-							onClick={() => getSelectedCategory(eachCategory)}
-						>
-							<span>{eachCategory}</span>
-						</button>
+							category={eachCategory}
+							getSelectedCategory={getSelectedCategory}
+							selectedCat={selectedCat}
+						/>
 					))
 				}
 			</div>
