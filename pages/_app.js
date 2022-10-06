@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
 			</Script>
 			<Script
 				strategy='lazyOnload'
-				src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY}&libraries=places`}
+				src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY}&libraries=places&map_ids=fb4e91185440c360`}
 			/>
 
 			<Context.Provider value={userData}>

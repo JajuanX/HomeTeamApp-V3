@@ -82,7 +82,7 @@ function CreateBusiness() {
 			router.push(`/business/center`)
 		}
 
-		if (user.userBusinesses.length > 0) router.push(`/business/edit/${user.userBusinesses[0]}`)
+		if (user.business) router.push(`/business/edit/${user.business.id}`)
 	}, [user]);
 
 	const handleInput = (e) => {

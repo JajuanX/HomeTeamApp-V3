@@ -15,7 +15,6 @@ function Bottom() {
 	const router = useRouter();
 
 	const closeMenu = () => {
-		console.log('run');
 		setIsMenuOpen(false);
 	}
 
@@ -25,7 +24,6 @@ function Bottom() {
 
 	const cleanPathName = (path) => {
 		const splitPath = path.split('/');
-		console.log(splitPath);
 		if(splitPath.length === 3) {
 			if(splitPath[2] === 'create') return 'Create';
 			if(splitPath[2] === 'edit') return 'Edit';

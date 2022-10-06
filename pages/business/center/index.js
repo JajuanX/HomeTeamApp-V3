@@ -5,16 +5,11 @@ import context from '../../../lib/context';
 import IndexLayout from '../../../layouts/IndexLayout';
 import styles from './Center.module.scss';
 import Button from '../../../components/button-navigation/Button';
-import useSubscriptions from '../../../lib/useSubscriptions';
 
 function Business() {
 	const {user} = useContext(context);
 	const isFirstRender = useRef(true);
 	const router = useRouter();
-	const {
-		products
-	} = useSubscriptions();
-	console.log(user);
 
 	useEffect(() => {
 		if (isFirstRender.current) {
@@ -37,14 +32,7 @@ function Business() {
 					alt="#"
 				/>}
 			</div>
-			<div>
-				{products && products.map(product => (
-					<div>
-						{product.id}
-					</div>
-				))
-				}
-			</div>
+
 			<div className={styles.buttonsContainer}>
 				{user?.business && 
 					<Button text='Edit Business' pageUrl={`/business/edit/${user?.business?.id}`} primary />
